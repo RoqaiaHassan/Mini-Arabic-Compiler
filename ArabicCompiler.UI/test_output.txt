@@ -1,0 +1,583 @@
+﻿=== 1. فحص التحليل اللغوي ===
+نجاح: True
+السطر: 1 | Token: كلمة محجوزة: برنامج | Lexeme: برنامج
+السطر: 1 | Token: معرّف | Lexeme: اختبارشامل
+السطر: 1 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 2 | Token: كلمة محجوزة: ثابت | Lexeme: ثابت
+السطر: 3 | Token: معرّف | Lexeme: خمسة
+السطر: 3 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 3 | Token: عدد صحيح | Lexeme: 5
+السطر: 3 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 4 | Token: معرّف | Lexeme: اثنان
+السطر: 4 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 4 | Token: عدد صحيح | Lexeme: 2
+السطر: 4 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 5 | Token: كلمة محجوزة: نوع | Lexeme: نوع
+السطر: 6 | Token: معرّف | Lexeme: ارقام
+السطر: 6 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 6 | Token: كلمة محجوزة: قائمة | Lexeme: قائمة
+السطر: 6 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 6 | Token: عدد صحيح | Lexeme: 5
+السطر: 6 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 6 | Token: كلمة محجوزة: من | Lexeme: من
+السطر: 6 | Token: نوع بيانات: صحيح | Lexeme: صحيح
+السطر: 6 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 7 | Token: معرّف | Lexeme: شخص
+السطر: 7 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 7 | Token: كلمة محجوزة: سجل | Lexeme: سجل
+السطر: 8 | Token: قوس كتلة مفتوح ({) | Lexeme: {
+السطر: 9 | Token: معرّف | Lexeme: عمر
+السطر: 9 | Token: نقطتان (:) | Lexeme: :
+السطر: 9 | Token: نوع بيانات: صحيح | Lexeme: صحيح
+السطر: 9 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 10 | Token: معرّف | Lexeme: ناجح
+السطر: 10 | Token: نقطتان (:) | Lexeme: :
+السطر: 10 | Token: نوع بيانات: منطقي | Lexeme: منطقي
+السطر: 10 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 11 | Token: قوس كتلة مغلق (}) | Lexeme: }
+السطر: 11 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 12 | Token: كلمة محجوزة: متغير | Lexeme: متغير
+السطر: 13 | Token: معرّف | Lexeme: س
+السطر: 13 | Token: فاصلة (،) | Lexeme: ،
+السطر: 13 | Token: معرّف | Lexeme: ص
+السطر: 13 | Token: فاصلة (،) | Lexeme: ،
+السطر: 13 | Token: معرّف | Lexeme: ن
+السطر: 13 | Token: فاصلة (،) | Lexeme: ،
+السطر: 13 | Token: معرّف | Lexeme: ع
+السطر: 13 | Token: فاصلة (،) | Lexeme: ،
+السطر: 13 | Token: معرّف | Lexeme: ب
+السطر: 13 | Token: فاصلة (،) | Lexeme: ،
+السطر: 13 | Token: معرّف | Lexeme: ر
+السطر: 13 | Token: فاصلة (،) | Lexeme: ،
+السطر: 13 | Token: معرّف | Lexeme: فوه
+السطر: 13 | Token: نقطتان (:) | Lexeme: :
+السطر: 13 | Token: نوع بيانات: صحيح | Lexeme: صحيح
+السطر: 13 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 14 | Token: معرّف | Lexeme: ف
+السطر: 14 | Token: نقطتان (:) | Lexeme: :
+السطر: 14 | Token: معرّف | Lexeme: ارقام
+السطر: 14 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 15 | Token: معرّف | Lexeme: ش
+السطر: 15 | Token: نقطتان (:) | Lexeme: :
+السطر: 15 | Token: معرّف | Lexeme: شخص
+السطر: 15 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 16 | Token: معرّف | Lexeme: عداد
+السطر: 16 | Token: نقطتان (:) | Lexeme: :
+السطر: 16 | Token: نوع بيانات: صحيح | Lexeme: صحيح
+السطر: 16 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 18 | Token: كلمة محجوزة: إجراء | Lexeme: إجراء
+السطر: 18 | Token: معرّف | Lexeme: زيادة
+السطر: 18 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 18 | Token: تمرير: بالمرجع | Lexeme: بالمرجع
+السطر: 18 | Token: معرّف | Lexeme: قيمة
+السطر: 18 | Token: نقطتان (:) | Lexeme: :
+السطر: 18 | Token: نوع بيانات: صحيح | Lexeme: صحيح
+السطر: 18 | Token: فاصلة (،) | Lexeme: ،
+السطر: 18 | Token: تمرير: بالقيمة | Lexeme: بالقيمة
+السطر: 18 | Token: معرّف | Lexeme: مقدار
+السطر: 18 | Token: نقطتان (:) | Lexeme: :
+السطر: 18 | Token: نوع بيانات: صحيح | Lexeme: صحيح
+السطر: 18 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 19 | Token: قوس كتلة مفتوح ({) | Lexeme: {
+السطر: 20 | Token: معرّف | Lexeme: قيمة
+السطر: 20 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 20 | Token: معرّف | Lexeme: قيمة
+السطر: 20 | Token: عامل جمع (+) | Lexeme: +
+السطر: 20 | Token: معرّف | Lexeme: مقدار
+السطر: 20 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 21 | Token: قوس كتلة مغلق (}) | Lexeme: }
+السطر: 23 | Token: قوس كتلة مفتوح ({) | Lexeme: {
+السطر: 24 | Token: معرّف | Lexeme: س
+السطر: 24 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 24 | Token: عدد صحيح | Lexeme: 2
+السطر: 24 | Token: عامل جمع (+) | Lexeme: +
+السطر: 24 | Token: عدد صحيح | Lexeme: 3
+السطر: 24 | Token: عامل ضرب (*) | Lexeme: *
+السطر: 24 | Token: عدد صحيح | Lexeme: 4
+السطر: 24 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 25 | Token: معرّف | Lexeme: ص
+السطر: 25 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 25 | Token: معرّف | Lexeme: س
+السطر: 25 | Token: عامل جمع (+) | Lexeme: +
+السطر: 25 | Token: معرّف | Lexeme: خمسة
+السطر: 25 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 26 | Token: معرّف | Lexeme: ن
+السطر: 26 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 26 | Token: عدد صحيح | Lexeme: 20
+السطر: 26 | Token: عامل طرح (-) | Lexeme: -
+السطر: 26 | Token: عدد صحيح | Lexeme: 1
+السطر: 26 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 27 | Token: معرّف | Lexeme: ع
+السطر: 27 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 27 | Token: عدد صحيح | Lexeme: 19
+السطر: 27 | Token: قسمة حقيقية (/) | Lexeme: /
+السطر: 27 | Token: عدد صحيح | Lexeme: 2
+السطر: 27 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 28 | Token: معرّف | Lexeme: ب
+السطر: 28 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 28 | Token: عدد صحيح | Lexeme: 17
+السطر: 28 | Token: قسمة صحيحة (\) | Lexeme: \
+السطر: 28 | Token: عدد صحيح | Lexeme: 5
+السطر: 28 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 29 | Token: معرّف | Lexeme: ر
+السطر: 29 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 29 | Token: عدد صحيح | Lexeme: 17
+السطر: 29 | Token: باقي القسمة (%) | Lexeme: %
+السطر: 29 | Token: عدد صحيح | Lexeme: 5
+السطر: 29 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 30 | Token: معرّف | Lexeme: فوه
+السطر: 30 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 30 | Token: عدد صحيح | Lexeme: 2
+السطر: 30 | Token: عامل أس (^) | Lexeme: ^
+السطر: 30 | Token: عدد صحيح | Lexeme: 3
+السطر: 30 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 32 | Token: شرط: إذا | Lexeme: إذا
+السطر: 32 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 32 | Token: معرّف | Lexeme: س
+السطر: 32 | Token: مقارنة: أكبر من (>) | Lexeme: >
+السطر: 32 | Token: عدد صحيح | Lexeme: 0
+السطر: 32 | Token: عامل منطقي: و | Lexeme: و
+السطر: 32 | Token: معرّف | Lexeme: ص
+السطر: 32 | Token: مقارنة: أكبر من (>) | Lexeme: >
+السطر: 32 | Token: عدد صحيح | Lexeme: 0
+السطر: 32 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 32 | Token: شرط: فإن | Lexeme: فإن
+السطر: 33 | Token: قوس كتلة مفتوح ({) | Lexeme: {
+السطر: 34 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 34 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 34 | Token: خيط رمزي | Lexeme: "اقل من عشرة"
+السطر: 34 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 34 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 35 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 35 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 35 | Token: معرّف | Lexeme: فوه
+السطر: 35 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 35 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 36 | Token: قوس كتلة مغلق (}) | Lexeme: }
+السطر: 38 | Token: معرّف | Lexeme: لكل
+السطر: 38 | Token: معرّف | Lexeme: عداد
+السطر: 38 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 38 | Token: عدد صحيح | Lexeme: 1
+السطر: 38 | Token: حلقة: إلى | Lexeme: إلى
+السطر: 38 | Token: عدد صحيح | Lexeme: 3
+السطر: 38 | Token: معرّف | Lexeme: بقدر
+السطر: 38 | Token: عدد صحيح | Lexeme: 1
+السطر: 39 | Token: قوس كتلة مفتوح ({) | Lexeme: {
+السطر: 40 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 40 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 40 | Token: خيط رمزي | Lexeme: "رقم التكرار"
+السطر: 40 | Token: فاصلة (،) | Lexeme: ،
+السطر: 40 | Token: معرّف | Lexeme: عداد
+السطر: 40 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 40 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 41 | Token: قوس كتلة مغلق (}) | Lexeme: }
+السطر: 43 | Token: معرّف | Lexeme: ف
+السطر: 43 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 43 | Token: عدد صحيح | Lexeme: 0
+السطر: 43 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 43 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 43 | Token: معرّف | Lexeme: ن
+السطر: 43 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 44 | Token: معرّف | Lexeme: ف
+السطر: 44 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 44 | Token: عدد صحيح | Lexeme: 1
+السطر: 44 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 44 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 44 | Token: معرّف | Lexeme: ب
+السطر: 44 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 45 | Token: معرّف | Lexeme: ف
+السطر: 45 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 45 | Token: عدد صحيح | Lexeme: 2
+السطر: 45 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 45 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 45 | Token: معرّف | Lexeme: ر
+السطر: 45 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 46 | Token: معرّف | Lexeme: ف
+السطر: 46 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 46 | Token: عدد صحيح | Lexeme: 3
+السطر: 46 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 46 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 46 | Token: معرّف | Lexeme: فوه
+السطر: 46 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 47 | Token: معرّف | Lexeme: ف
+السطر: 47 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 47 | Token: عدد صحيح | Lexeme: 4
+السطر: 47 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 47 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 47 | Token: معرّف | Lexeme: ف
+السطر: 47 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 47 | Token: عدد صحيح | Lexeme: 0
+السطر: 47 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 47 | Token: عامل جمع (+) | Lexeme: +
+السطر: 47 | Token: معرّف | Lexeme: ف
+السطر: 47 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 47 | Token: عدد صحيح | Lexeme: 3
+السطر: 47 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 47 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 49 | Token: معرّف | Lexeme: ش
+السطر: 49 | Token: نقطة النهاية (.) | Lexeme: .
+السطر: 49 | Token: معرّف | Lexeme: عمر
+السطر: 49 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 49 | Token: معرّف | Lexeme: ف
+السطر: 49 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 49 | Token: عدد صحيح | Lexeme: 4
+السطر: 49 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 49 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 50 | Token: معرّف | Lexeme: ش
+السطر: 50 | Token: نقطة النهاية (.) | Lexeme: .
+السطر: 50 | Token: معرّف | Lexeme: ناجح
+السطر: 50 | Token: عامل إسناد (=) | Lexeme: =
+السطر: 50 | Token: معرّف | Lexeme: نعم
+السطر: 50 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 52 | Token: معرّف | Lexeme: زيادة
+السطر: 52 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 52 | Token: معرّف | Lexeme: س
+السطر: 52 | Token: فاصلة (،) | Lexeme: ،
+السطر: 52 | Token: عدد صحيح | Lexeme: 1
+السطر: 52 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 52 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 54 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 54 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 54 | Token: خيط رمزي | Lexeme: "قيمة ص"
+السطر: 54 | Token: فاصلة (،) | Lexeme: ،
+السطر: 54 | Token: معرّف | Lexeme: ص
+السطر: 54 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 54 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 55 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 55 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 55 | Token: خيط رمزي | Lexeme: "قيمة ن"
+السطر: 55 | Token: فاصلة (،) | Lexeme: ،
+السطر: 55 | Token: معرّف | Lexeme: ن
+السطر: 55 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 55 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 56 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 56 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 56 | Token: خيط رمزي | Lexeme: "القسمة الحقيقية"
+السطر: 56 | Token: فاصلة (،) | Lexeme: ،
+السطر: 56 | Token: معرّف | Lexeme: ع
+السطر: 56 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 56 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 57 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 57 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 57 | Token: خيط رمزي | Lexeme: "القسمة الصحيحة"
+السطر: 57 | Token: فاصلة (،) | Lexeme: ،
+السطر: 57 | Token: معرّف | Lexeme: ب
+السطر: 57 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 57 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 58 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 58 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 58 | Token: خيط رمزي | Lexeme: "باقي القسمة"
+السطر: 58 | Token: فاصلة (،) | Lexeme: ،
+السطر: 58 | Token: معرّف | Lexeme: ر
+السطر: 58 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 58 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 59 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 59 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 59 | Token: خيط رمزي | Lexeme: "الاس"
+السطر: 59 | Token: فاصلة (،) | Lexeme: ،
+السطر: 59 | Token: معرّف | Lexeme: فوه
+السطر: 59 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 59 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 60 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 60 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 60 | Token: خيط رمزي | Lexeme: "العنصر صفر"
+السطر: 60 | Token: فاصلة (،) | Lexeme: ،
+السطر: 60 | Token: معرّف | Lexeme: ف
+السطر: 60 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 60 | Token: عدد صحيح | Lexeme: 0
+السطر: 60 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 60 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 60 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 61 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 61 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 61 | Token: خيط رمزي | Lexeme: "العنصر الرابع"
+السطر: 61 | Token: فاصلة (،) | Lexeme: ،
+السطر: 61 | Token: معرّف | Lexeme: ف
+السطر: 61 | Token: قوس مصفوفة مفتوح ([) | Lexeme: [
+السطر: 61 | Token: عدد صحيح | Lexeme: 4
+السطر: 61 | Token: قوس مصفوفة مغلق (]) | Lexeme: ]
+السطر: 61 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 61 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 62 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 62 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 62 | Token: خيط رمزي | Lexeme: "عمر الشخص"
+السطر: 62 | Token: فاصلة (،) | Lexeme: ،
+السطر: 62 | Token: معرّف | Lexeme: ش
+السطر: 62 | Token: نقطة النهاية (.) | Lexeme: .
+السطر: 62 | Token: معرّف | Lexeme: عمر
+السطر: 62 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 62 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 63 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 63 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 63 | Token: خيط رمزي | Lexeme: "حالة الشخص"
+السطر: 63 | Token: فاصلة (،) | Lexeme: ،
+السطر: 63 | Token: معرّف | Lexeme: ش
+السطر: 63 | Token: نقطة النهاية (.) | Lexeme: .
+السطر: 63 | Token: معرّف | Lexeme: ناجح
+السطر: 63 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 63 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 64 | Token: تعليمة: اطبع | Lexeme: اطبع
+السطر: 64 | Token: قوس دائري مفتوح (() | Lexeme: (
+السطر: 64 | Token: خيط رمزي | Lexeme: "القيمة النهائية لس"
+السطر: 64 | Token: فاصلة (،) | Lexeme: ،
+السطر: 64 | Token: معرّف | Lexeme: س
+السطر: 64 | Token: قوس دائري مغلق ()) | Lexeme: )
+السطر: 64 | Token: فاصلة منقوطة (؛) | Lexeme: ؛
+السطر: 65 | Token: قوس كتلة مغلق (}) | Lexeme: }
+السطر: 65 | Token: نقطة النهاية (.) | Lexeme: .
+
+=== 2. فحص التحليل النحوي ===
+نجاح: True
+تم التحليل النحوي بنجاح عبر مكتبة المترجم الأصلية (ArabicCompiler.Native.dll - Bison Parser).
+الكود البرمجي مطابق تماماً للقواعد النحوية الصارمة للغة المترجم العربي.
+=== 3. فحص التحليل الدلالي ===
+نجاح: True
+===== نتائج التحليل الدلالي (Semantic Analysis) =====
+حالة الفحص: تم التحليل الدلالي بنجاح تام.
+فحص النطاقات والصلاحيات: كافة المعرفات، المتغيرات، الثوابت والأنواع مصرح بها وصحيحة.
+فحص توافق الأنواع: جميع عمليات الإسناد والمعاملات متوافقة في الأنواع.
+عدد الرموز المسجلة: 20
+- الثوابت المعرفة: 2
+- المتغيرات المعرفة: 10
+- الأنواع والسجلات: 2
+- الإجراءات والدوال: 1
+
+تم تحديث جدول الرموز (Symbol Table) بالبيانات الدلالية المدققة.
+
+=== 4. فحص الكود الوسيط TAC ===
+الكود الوسيط Three Address Code:
+
+1: goto L_main
+2: proc زيادة
+3: paramdef_ref قيمة
+4: paramdef مقدار
+t1 = قيمة + مقدار : 5
+6: قيمة = t1
+7: endproc زيادة
+:L_main : 8
+9: print "رقم التكرار"
+10: print عداد
+11: ف[0] = ن
+12: ف[1] = ب
+13: ف[2] = ر
+14: ف[3] = فوه
+t2 = ف[0] + ف[3] : 15
+16: ف[4] = t2
+17: ش.عمر = ف[4]
+18: ش.ناجح = نعم
+19: param س
+20: param 1
+21: call زيادة
+22: print "قيمة ص"
+23: print ص
+24: print "قيمة ن"
+25: print ن
+26: print "القسمة الحقيقية"
+27: print ع
+28: print "القسمة الصحيحة"
+29: print ب
+30: print "باقي القسمة"
+31: print ر
+32: print "الاس"
+33: print فوه
+34: print "العنصر صفر"
+35: print ف[0]
+36: print "العنصر الرابع"
+37: print ف[4]
+38: print "عمر الشخص"
+39: print ش.عمر
+40: print "حالة الشخص"
+41: print ش.ناجح
+42: print "القيمة النهائية لس"
+43: print س
+
+=== 5. فحص تحسين الكود ===
+===== الكود الوسيط قبل التحسين =====
+الكود الوسيط Three Address Code:
+
+1: goto L_main
+2: proc زيادة
+3: paramdef_ref قيمة
+4: paramdef مقدار
+t1 = قيمة + مقدار : 5
+6: قيمة = t1
+7: endproc زيادة
+:L_main : 8
+9: print "رقم التكرار"
+10: print عداد
+11: ف[0] = ن
+12: ف[1] = ب
+13: ف[2] = ر
+14: ف[3] = فوه
+t2 = ف[0] + ف[3] : 15
+16: ف[4] = t2
+17: ش.عمر = ف[4]
+18: ش.ناجح = نعم
+19: param س
+20: param 1
+21: call زيادة
+22: print "قيمة ص"
+23: print ص
+24: print "قيمة ن"
+25: print ن
+26: print "القسمة الحقيقية"
+27: print ع
+28: print "القسمة الصحيحة"
+29: print ب
+30: print "باقي القسمة"
+31: print ر
+32: print "الاس"
+33: print فوه
+34: print "العنصر صفر"
+35: print ف[0]
+36: print "العنصر الرابع"
+37: print ف[4]
+38: print "عمر الشخص"
+39: print ش.عمر
+40: print "حالة الشخص"
+41: print ش.ناجح
+42: print "القيمة النهائية لس"
+43: print س
+
+===== الكود الوسيط بعد التحسين (Optimized TAC) =====
+1: goto L_main
+2: proc زيادة
+3: paramdef_ref قيمة
+4: paramdef مقدار
+5: t1 = قيمة + مقدار
+6: قيمة = t1
+7: endproc زيادة
+8: :L_main
+9: print "رقم التكرار"
+10: print عداد
+11: ف[0] = ن
+12: ف[1] = ب
+13: ف[2] = ر
+14: ف[3] = فوه
+15: t2 = ف[0] + ف[3]
+16: ف[4] = t2
+17: ش.عمر = ف[4]
+18: ش.ناجح = نعم
+19: param س
+20: param 1
+21: call زيادة
+22: print "قيمة ص"
+23: print ص
+24: print "قيمة ن"
+25: print ن
+26: print "القسمة الحقيقية"
+27: print ع
+28: print "القسمة الصحيحة"
+29: print ب
+30: print "باقي القسمة"
+31: print ر
+32: print "الاس"
+33: print فوه
+34: print "العنصر صفر"
+35: print ف[0]
+36: print "العنصر الرابع"
+37: print ف[4]
+38: print "عمر الشخص"
+39: print ش.عمر
+40: print "حالة الشخص"
+41: print ش.ناجح
+42: print "القيمة النهائية لس"
+43: print س
+
+=== 6. فحص كود التجميع MASM ===
+; ====================================================
+; Arabic Compiler - Generated Assembly Code :
+; Target: Windows x64 / MASM :
+; Generated dynamically based on input source program :
+; ====================================================
+
+option casemap:none
+
+includelib kernel32.lib
+includelib msvcrt.lib
+
+EXTERN ExitProcess:PROC
+EXTERN SetConsoleOutputCP:PROC
+EXTERN printf:PROC
+EXTERN scanf:PROC
+
+.data
+fmt_integer db "%lld", 10, 0
+fmt_string db "%s", 10, 0
+var_خمسة dq 5   ; ثابت: خمسة
+var_اثنان dq 2   ; ثابت: اثنان
+var_س dq 0   ; متغير: س
+var_ص dq 0   ; متغير: ص
+var_ن dq 0   ; متغير: ن
+var_ع dq 0   ; متغير: ع
+var_ب dq 0   ; متغير: ب
+var_ر dq 0   ; متغير: ر
+var_فوه dq 0   ; متغير: فوه
+var_ف dq 0   ; متغير: ف
+var_ش dq 0   ; متغير: ش
+var_عداد dq 0   ; متغير: عداد
+
+.code
+main PROC
+    sub rsp, 40
+    mov rcx, 65001
+    call SetConsoleOutputCP
+
+    ; Initialize or load variable خمسة
+    mov rax, var_خمسة
+    ; Initialize or load variable اثنان
+    mov rax, var_اثنان
+    ; Initialize or load variable س
+    mov rax, var_س
+    ; Initialize or load variable ص
+    mov rax, var_ص
+    ; Initialize or load variable ن
+    mov rax, var_ن
+    ; Initialize or load variable ع
+    mov rax, var_ع
+    ; Initialize or load variable ب
+    mov rax, var_ب
+    ; Initialize or load variable ر
+    mov rax, var_ر
+    ; Initialize or load variable فوه
+    mov rax, var_فوه
+    ; Initialize or load variable ف
+    mov rax, var_ف
+    ; Initialize or load variable ش
+    mov rax, var_ش
+    ; Initialize or load variable عداد
+    mov rax, var_عداد
+
+    xor ecx, ecx
+    call ExitProcess
+main ENDP
+END
+
+=== 7. فحص دورة الترجمة الكاملة RunAllStages ===
+النجاح الكلي: True
+ملخص الخطأ: تم تنفيذ جميع مراحل المترجم بنجاح وبدون أي أخطاء.
+مخرجات الكونسول:
+اقل من عشرة
+8
+قيمة ص
+19
+قيمة ن
+19
+القسمة الحقيقية
+9.5
+القسمة الصحيحة
+3
+باقي القسمة
+2
+الاس
+8
+العنصر صفر
+ف[0]
+العنصر الرابع
+ف[0] + 8
+عمر الشخص
+ف[0] + 8
+حالة الشخص
+1
+القيمة النهائية لس
+15
