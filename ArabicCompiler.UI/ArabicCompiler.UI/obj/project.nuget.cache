@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "zwiFj/orzEqiwxvB4pjeHyng6npYczfetot+qz9v+Te4gxb3VwvShntn2CdOL3LD95+3wKZU3l+R+hQh2qh6aQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Ro.Has\\Desktop\\GF4-C\\GF4-C\\ArabicCompiler.UI\\ArabicCompiler.UI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ro.Has\\.nuget\\packages\\costura.fody\\6.2.0\\costura.fody.6.2.0.nupkg.sha512",
+    "C:\\Users\\Ro.Has\\.nuget\\packages\\fody\\6.9.3\\fody.6.9.3.nupkg.sha512"
+  ],
+  "logs": []
+}

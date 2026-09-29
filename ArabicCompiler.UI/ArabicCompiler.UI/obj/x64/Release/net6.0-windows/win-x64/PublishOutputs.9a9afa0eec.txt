@@ -1,0 +1,4 @@
+C:\Users\Ro.Has\Desktop\ArabicCompiler.UI.pdb
+C:\Users\Ro.Has\Desktop\ArabicCompiler.Native.dll
+C:\Users\Ro.Has\Desktop\Examples\program.arb
+C:\Users\Ro.Has\Desktop\ArabicCompiler.UI.exe

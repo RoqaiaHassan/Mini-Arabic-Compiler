@@ -1,0 +1,7 @@
+C:\Users\Ro.Has\Desktop\ArabicCompiler.Native.dll
+C:\Users\Ro.Has\Desktop\ArabicCompiler.UI.exe
+C:\Users\Ro.Has\Desktop\Examples\program.arb
+C:\Users\Ro.Has\Desktop\ArabicCompiler.UI.dll
+C:\Users\Ro.Has\Desktop\ArabicCompiler.UI.deps.json
+C:\Users\Ro.Has\Desktop\ArabicCompiler.UI.runtimeconfig.json
+C:\Users\Ro.Has\Desktop\ArabicCompiler.UI.pdb

@@ -1,0 +1,17 @@
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\bin\Release\net6.0-windows\Examples\program.arb
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\bin\Release\net6.0-windows\ArabicCompiler.UI.exe
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\bin\Release\net6.0-windows\ArabicCompiler.Native.dll
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\bin\Release\net6.0-windows\ArabicCompiler.UI.deps.json
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\bin\Release\net6.0-windows\ArabicCompiler.UI.runtimeconfig.json
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\bin\Release\net6.0-windows\ArabicCompiler.UI.dll
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\bin\Release\net6.0-windows\ref\ArabicCompiler.UI.dll
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\bin\Release\net6.0-windows\ArabicCompiler.UI.pdb
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\obj\Release\net6.0-windows\ArabicCompiler.UI.csproj.AssemblyReference.cache
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\obj\Release\net6.0-windows\ArabicCompiler.UI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\obj\Release\net6.0-windows\ArabicCompiler.UI.AssemblyInfoInputs.cache
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\obj\Release\net6.0-windows\ArabicCompiler.UI.AssemblyInfo.cs
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\obj\Release\net6.0-windows\ArabicCompiler.UI.csproj.CoreCompileInputs.cache
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\obj\Release\net6.0-windows\ArabicCompiler.UI.dll
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\obj\Release\net6.0-windows\ref\ArabicCompiler.UI.dll
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\obj\Release\net6.0-windows\ArabicCompiler.UI.pdb
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.UI\obj\Release\net6.0-windows\ArabicCompiler.UI.genruntimeconfig.cache

@@ -1,0 +1,166 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0-windows7.0": {
+      "Costura.Fody/6.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.9.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Costura.dll": {}
+        },
+        "build": {
+          "build/Costura.Fody.props": {},
+          "build/Costura.Fody.targets": {}
+        }
+      },
+      "Fody/6.9.3": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Costura.Fody/6.2.0": {
+      "sha512": "jaX+A6sw6pI7lkLDTvxN7zU8Ja/a50N2xPKF6RYy0J6QF62wVg+hJMXJph2K8XarDaAlxQ82EaKv3fAvUNyRpg==",
+      "type": "package",
+      "path": "costura.fody/6.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Costura.Fody.props",
+        "build/Costura.Fody.targets",
+        "costura.fody.6.2.0.nupkg.sha512",
+        "costura.fody.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Costura.dll",
+        "lib/netstandard2.0/Costura.pdb",
+        "lib/netstandard2.0/Costura.xml",
+        "netclassicweaver/Costura.Fody.dll",
+        "netclassicweaver/Costura.Fody.xcf",
+        "netstandardweaver/Costura.Fody.dll",
+        "netstandardweaver/Costura.Fody.xcf"
+      ]
+    },
+    "Fody/6.9.3": {
+      "sha512": "1CUGgFdyECDKgi5HaUBhdv6k+VG9Iy4OCforGfHyar3xQXAJypZkzymgKtWj/4SPd6nSG0Qi7NH71qHrDSZLaA==",
+      "type": "package",
+      "path": "fody/6.9.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Fody.targets",
+        "fody.6.9.3.nupkg.sha512",
+        "fody.nuspec",
+        "package_icon.png",
+        "package_readme.md",
+        "tasks/net472/FodyCommon.dll",
+        "tasks/net472/FodyHelpers.dll",
+        "tasks/net472/FodyHelpers.xml",
+        "tasks/net472/FodyIsolated.dll",
+        "tasks/net472/FodyTasks.dll",
+        "tasks/net472/Mono.Cecil.Pdb.dll",
+        "tasks/net472/Mono.Cecil.Pdb.pdb",
+        "tasks/net472/Mono.Cecil.Rocks.dll",
+        "tasks/net472/Mono.Cecil.Rocks.pdb",
+        "tasks/net472/Mono.Cecil.dll",
+        "tasks/net472/Mono.Cecil.pdb",
+        "tasks/netstandard2.0/FodyCommon.dll",
+        "tasks/netstandard2.0/FodyHelpers.dll",
+        "tasks/netstandard2.0/FodyHelpers.xml",
+        "tasks/netstandard2.0/FodyIsolated.dll",
+        "tasks/netstandard2.0/FodyTasks.dll",
+        "tasks/netstandard2.0/Mono.Cecil.Pdb.dll",
+        "tasks/netstandard2.0/Mono.Cecil.Pdb.pdb",
+        "tasks/netstandard2.0/Mono.Cecil.Rocks.dll",
+        "tasks/netstandard2.0/Mono.Cecil.Rocks.pdb",
+        "tasks/netstandard2.0/Mono.Cecil.dll",
+        "tasks/netstandard2.0/Mono.Cecil.pdb"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0-windows7.0": [
+      "Costura.Fody >= 6.2.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Ro.Has\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Ro.Has\\Desktop\\GF4-C\\GF4-C\\ArabicCompiler.UI\\ArabicCompiler.UI.csproj",
+      "projectName": "ArabicCompiler.UI",
+      "projectPath": "C:\\Users\\Ro.Has\\Desktop\\GF4-C\\GF4-C\\ArabicCompiler.UI\\ArabicCompiler.UI.csproj",
+      "packagesPath": "C:\\Users\\Ro.Has\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ro.Has\\Desktop\\GF4-C\\GF4-C\\ArabicCompiler.UI\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Ro.Has\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0-windows7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0-windows7.0": {
+        "targetAlias": "net6.0-windows",
+        "dependencies": {
+          "Costura.Fody": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.2.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
