@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PlatformTarget>x64</PlatformTarget>
+    <Platforms>x64</Platforms>
+    <ApplicationIcon />
+    <StartupObject>ArabicCompiler.UI.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\ArabicCompiler.Native\x64\Debug\ArabicCompiler.Native.dll" Condition="Exists('..\ArabicCompiler.Native\x64\Debug\ArabicCompiler.Native.dll')">
+      <Link>ArabicCompiler.Native.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <PackageReference Include="Costura.Fody" Version="6.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <None Update="ArabicCompiler.Native.dll" Condition="!Exists('..\ArabicCompiler.Native\x64\Debug\ArabicCompiler.Native.dll')">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Examples\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
