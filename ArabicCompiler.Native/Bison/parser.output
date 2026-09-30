@@ -1,0 +1,3771 @@
+Terminals unused in grammar
+
+    LEXICAL_ERROR
+
+
+State 66 conflicts: 2 shift/reduce
+State 219 conflicts: 2 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: PROGRAM program_name SEMICOLON program_block DOT
+
+    2 program_block: declaration_part_opt instruction_list
+
+    3 declaration_part_opt: %empty
+    4                     | declaration_part
+
+    5 declaration_part: constant_definitions type_definitions_opt variable_definitions_opt procedure_definitions_opt
+    6                 | type_definitions variable_definitions_opt procedure_definitions_opt
+    7                 | variable_definitions procedure_definitions_opt
+    8                 | procedure_definitions
+
+    9 constant_definitions: CONST constant_definition constant_definition_tail
+
+   10 constant_definition_tail: %empty
+   11                         | constant_definition_tail constant_definition
+
+   12 constant_definition: constant_name ASSIGN constant_value SEMICOLON
+
+   13 type_definitions_opt: %empty
+   14                     | type_definitions
+
+   15 type_definitions: TYPE type_definition type_definition_tail
+
+   16 type_definition_tail: %empty
+   17                     | type_definition_tail type_definition
+
+   18 type_definition: type_name ASSIGN compound_type SEMICOLON
+
+   19 compound_type: list_type
+   20              | record_type
+
+   21 list_type: LIST LBRACKET INTEGER_LITERAL RBRACKET OF data_type
+
+   22 record_type: RECORD LBRACE field_list RBRACE
+
+   23 field_list: field_definition field_definition_tail
+
+   24 field_definition_tail: %empty
+   25                      | field_definition_tail SEMICOLON field_definition
+
+   26 field_definition: field_name identifier_tail COLON data_type
+
+   27 identifier_tail: %empty
+   28                | identifier_tail COMMA IDENTIFIER
+
+   29 variable_definitions_opt: %empty
+   30                         | variable_definitions
+
+   31 variable_definitions: VAR variable_definition variable_definition_tail
+
+   32 variable_definition_tail: %empty
+   33                         | variable_definition_tail variable_definition
+
+   34 variable_definition: variable_group SEMICOLON
+
+   35 variable_group: variable_name variable_name_tail COLON data_type
+
+   36 variable_name_tail: %empty
+   37                   | variable_name_tail COMMA variable_name
+
+   38 procedure_definitions_opt: %empty
+   39                          | procedure_definitions
+
+   40 procedure_definitions: procedure_definition procedure_definition_tail
+
+   41 procedure_definition_tail: %empty
+   42                          | procedure_definition_tail procedure_definition
+
+   43 procedure_definition: procedure_header procedure_block SEMICOLON
+
+   44 procedure_header: PROCEDURE procedure_name LPAREN formal_parameters_opt RPAREN SEMICOLON
+
+   45 procedure_block: program_block
+
+   46 formal_parameters_opt: %empty
+   47                      | formal_parameters
+
+   48 formal_parameters: formal_parameter formal_parameter_tail
+
+   49 formal_parameter_tail: %empty
+   50                      | formal_parameter_tail SEMICOLON formal_parameter
+
+   51 formal_parameter: pass_mode_opt variable_group
+
+   52 pass_mode_opt: %empty
+   53              | BY_VALUE
+   54              | BY_REFERENCE
+
+   55 data_type: INT_TYPE
+   56          | REAL_TYPE
+   57          | BOOL_TYPE
+   58          | CHAR_TYPE
+   59          | STRING_TYPE
+   60          | type_name
+
+   61 instruction_list: LBRACE instruction instruction_tail RBRACE
+
+   62 instruction_tail: %empty
+   63                 | instruction_tail SEMICOLON instruction
+
+   64 instruction: assignment_statement
+   65            | input_statement
+   66            | output_statement
+   67            | procedure_call
+   68            | conditional_statement
+   69            | repetition_statement
+   70            | instruction_list
+   71            | %empty
+
+   72 assignment_statement: variable_access ASSIGN expression
+
+   73 input_statement: READ LPAREN variable_access RPAREN
+
+   74 output_statement: PRINT LPAREN print_list RPAREN
+
+   75 print_list: print_item print_item_tail
+
+   76 print_item_tail: %empty
+   77                | print_item_tail COMMA print_item
+
+   78 print_item: variable_access
+   79           | literal
+
+   80 procedure_call: procedure_name LPAREN actual_parameters_opt RPAREN
+
+   81 actual_parameters_opt: %empty
+   82                      | actual_parameters
+
+   83 actual_parameters: actual_parameter actual_parameter_tail
+
+   84 actual_parameter_tail: %empty
+   85                      | actual_parameter_tail COMMA actual_parameter
+
+   86 actual_parameter: expression
+
+   87 conditional_statement: if_statement
+   88                      | if_else_statement
+   89                      | if_else_if_statement
+
+   90 if_statement: IF LPAREN condition RPAREN THEN instruction
+
+   91 condition: expression
+
+   92 if_else_statement: if_statement ELSE instruction
+
+   93 if_else_if_statement: if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+
+   94 else_if_tail: %empty
+   95             | else_if_tail SEMICOLON ELSE if_statement
+
+   96 optional_else: %empty
+   97              | ELSE instruction
+
+   98 repetition_statement: for_statement
+   99                     | while_statement
+  100                     | repeat_until_statement
+
+  101 for_statement: FOR LPAREN repetition_range RPAREN instruction
+
+  102 repetition_range: variable_name ASSIGN expression TO expression step_opt
+
+  103 step_opt: %empty
+  104         | STEP expression
+
+  105 while_statement: WHILE LPAREN condition RPAREN DO instruction
+
+  106 repeat_until_statement: REPEAT instruction UNTIL LPAREN condition RPAREN
+
+  107 expression: simple_expression
+  108           | simple_expression relational_operator simple_expression
+
+  109 relational_operator: LT
+  110                    | GT
+  111                    | LE
+  112                    | GE
+  113                    | EQ
+  114                    | NE
+
+  115 simple_expression: sign_opt term addition_tail
+
+  116 sign_opt: %empty
+  117         | sign_operator
+
+  118 sign_operator: PLUS
+  119              | MINUS
+
+  120 addition_tail: %empty
+  121              | addition_tail addition_operator term
+
+  122 addition_operator: sign_operator
+  123                  | OR
+
+  124 term: factor multiplication_tail
+
+  125 multiplication_tail: %empty
+  126                    | multiplication_tail multiplication_operator factor
+
+  127 multiplication_operator: POWER
+  128                        | MUL
+  129                        | REAL_DIV
+  130                        | INT_DIV
+  131                        | MOD
+  132                        | AND
+
+  133 factor: numeric
+  134       | literal
+  135       | boolean_value
+  136       | identifier_factor
+  137       | LPAREN expression RPAREN
+  138       | NOT factor
+
+  139 identifier_factor: IDENTIFIER
+  140                  | IDENTIFIER selector
+
+  141 variable_access: IDENTIFIER
+  142                | IDENTIFIER selector
+
+  143 selector: indexed_selector
+  144         | field_selector
+
+  145 indexed_selector: LBRACKET expression RBRACKET
+
+  146 field_selector: DOT field_name
+
+  147 constant_value: numeric
+  148               | literal
+  149               | boolean_value
+  150               | constant_name
+
+  151 numeric: INTEGER_LITERAL
+  152        | REAL_LITERAL
+
+  153 literal: STRING_LITERAL
+  154        | CHAR_LITERAL
+
+  155 boolean_value: TRUE
+  156              | FALSE
+
+  157 program_name: IDENTIFIER
+
+  158 constant_name: IDENTIFIER
+
+  159 type_name: IDENTIFIER
+
+  160 field_name: IDENTIFIER
+
+  161 variable_name: IDENTIFIER
+
+  162 procedure_name: IDENTIFIER
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    PROGRAM (258) 1
+    CONST (259) 9
+    TYPE (260) 15
+    LIST (261) 21
+    OF (262) 21
+    RECORD (263) 22
+    VAR (264) 31
+    PROCEDURE (265) 44
+    BY_VALUE (266) 53
+    BY_REFERENCE (267) 54
+    INT_TYPE (268) 55
+    REAL_TYPE (269) 56
+    BOOL_TYPE (270) 57
+    CHAR_TYPE (271) 58
+    STRING_TYPE (272) 59
+    READ (273) 73
+    PRINT (274) 74
+    IF (275) 90
+    THEN (276) 90
+    ELSE (277) 92 93 95 97
+    FOR (278) 101
+    TO (279) 102
+    STEP (280) 104
+    WHILE (281) 105
+    DO (282) 105
+    REPEAT (283) 106
+    UNTIL (284) 106
+    TRUE (285) 155
+    FALSE (286) 156
+    LT (287) 109
+    GT (288) 110
+    LE (289) 111
+    GE (290) 112
+    EQ (291) 113
+    NE (292) 114
+    PLUS (293) 118
+    MINUS (294) 119
+    OR (295) 123
+    POWER (296) 127
+    MUL (297) 128
+    REAL_DIV (298) 129
+    INT_DIV (299) 130
+    MOD (300) 131
+    AND (301) 132
+    NOT (302) 138
+    ASSIGN (303) 12 18 72 102
+    DOT (304) 1 146
+    COLON (305) 26 35
+    SEMICOLON (306) 1 12 18 25 34 43 44 50 63 93 95
+    COMMA (307) 28 37 77 85
+    LBRACE (308) 22 61
+    RBRACE (309) 22 61
+    LBRACKET (310) 21 145
+    RBRACKET (311) 21 145
+    LPAREN (312) 44 73 74 80 90 101 105 106 137
+    RPAREN (313) 44 73 74 80 90 101 105 106 137
+    IDENTIFIER <text> (314) 28 139 140 141 142 157 158 159 160 161 162
+    INTEGER_LITERAL <text> (315) 21 151
+    REAL_LITERAL <text> (316) 152
+    STRING_LITERAL <text> (317) 153
+    CHAR_LITERAL <text> (318) 154
+    LEXICAL_ERROR (319)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (65)
+        on left: 0
+    program (66)
+        on left: 1
+        on right: 0
+    program_block (67)
+        on left: 2
+        on right: 1 45
+    declaration_part_opt (68)
+        on left: 3 4
+        on right: 2
+    declaration_part (69)
+        on left: 5 6 7 8
+        on right: 4
+    constant_definitions (70)
+        on left: 9
+        on right: 5
+    constant_definition_tail (71)
+        on left: 10 11
+        on right: 9 11
+    constant_definition (72)
+        on left: 12
+        on right: 9 11
+    type_definitions_opt (73)
+        on left: 13 14
+        on right: 5
+    type_definitions (74)
+        on left: 15
+        on right: 6 14
+    type_definition_tail (75)
+        on left: 16 17
+        on right: 15 17
+    type_definition (76)
+        on left: 18
+        on right: 15 17
+    compound_type (77)
+        on left: 19 20
+        on right: 18
+    list_type (78)
+        on left: 21
+        on right: 19
+    record_type (79)
+        on left: 22
+        on right: 20
+    field_list (80)
+        on left: 23
+        on right: 22
+    field_definition_tail (81)
+        on left: 24 25
+        on right: 23 25
+    field_definition (82)
+        on left: 26
+        on right: 23 25
+    identifier_tail (83)
+        on left: 27 28
+        on right: 26 28
+    variable_definitions_opt (84)
+        on left: 29 30
+        on right: 5 6
+    variable_definitions (85)
+        on left: 31
+        on right: 7 30
+    variable_definition_tail (86)
+        on left: 32 33
+        on right: 31 33
+    variable_definition (87)
+        on left: 34
+        on right: 31 33
+    variable_group (88)
+        on left: 35
+        on right: 34 51
+    variable_name_tail (89)
+        on left: 36 37
+        on right: 35 37
+    procedure_definitions_opt (90)
+        on left: 38 39
+        on right: 5 6 7
+    procedure_definitions (91)
+        on left: 40
+        on right: 8 39
+    procedure_definition_tail (92)
+        on left: 41 42
+        on right: 40 42
+    procedure_definition (93)
+        on left: 43
+        on right: 40 42
+    procedure_header (94)
+        on left: 44
+        on right: 43
+    procedure_block (95)
+        on left: 45
+        on right: 43
+    formal_parameters_opt (96)
+        on left: 46 47
+        on right: 44
+    formal_parameters (97)
+        on left: 48
+        on right: 47
+    formal_parameter_tail (98)
+        on left: 49 50
+        on right: 48 50
+    formal_parameter (99)
+        on left: 51
+        on right: 48 50
+    pass_mode_opt (100)
+        on left: 52 53 54
+        on right: 51
+    data_type (101)
+        on left: 55 56 57 58 59 60
+        on right: 21 26 35
+    instruction_list (102)
+        on left: 61
+        on right: 2 70
+    instruction_tail (103)
+        on left: 62 63
+        on right: 61 63
+    instruction (104)
+        on left: 64 65 66 67 68 69 70 71
+        on right: 61 63 90 92 97 101 105 106
+    assignment_statement (105)
+        on left: 72
+        on right: 64
+    input_statement (106)
+        on left: 73
+        on right: 65
+    output_statement (107)
+        on left: 74
+        on right: 66
+    print_list (108)
+        on left: 75
+        on right: 74
+    print_item_tail (109)
+        on left: 76 77
+        on right: 75 77
+    print_item (110)
+        on left: 78 79
+        on right: 75 77
+    procedure_call (111)
+        on left: 80
+        on right: 67
+    actual_parameters_opt (112)
+        on left: 81 82
+        on right: 80
+    actual_parameters (113)
+        on left: 83
+        on right: 82
+    actual_parameter_tail (114)
+        on left: 84 85
+        on right: 83 85
+    actual_parameter (115)
+        on left: 86
+        on right: 83 85
+    conditional_statement (116)
+        on left: 87 88 89
+        on right: 68
+    if_statement (117)
+        on left: 90
+        on right: 87 92 93 95
+    condition (118)
+        on left: 91
+        on right: 90 105 106
+    if_else_statement (119)
+        on left: 92
+        on right: 88
+    if_else_if_statement (120)
+        on left: 93
+        on right: 89
+    else_if_tail (121)
+        on left: 94 95
+        on right: 93 95
+    optional_else (122)
+        on left: 96 97
+        on right: 93
+    repetition_statement (123)
+        on left: 98 99 100
+        on right: 69
+    for_statement (124)
+        on left: 101
+        on right: 98
+    repetition_range (125)
+        on left: 102
+        on right: 101
+    step_opt (126)
+        on left: 103 104
+        on right: 102
+    while_statement (127)
+        on left: 105
+        on right: 99
+    repeat_until_statement (128)
+        on left: 106
+        on right: 100
+    expression (129)
+        on left: 107 108
+        on right: 72 86 91 102 104 137 145
+    relational_operator (130)
+        on left: 109 110 111 112 113 114
+        on right: 108
+    simple_expression (131)
+        on left: 115
+        on right: 107 108
+    sign_opt (132)
+        on left: 116 117
+        on right: 115
+    sign_operator (133)
+        on left: 118 119
+        on right: 117 122
+    addition_tail (134)
+        on left: 120 121
+        on right: 115 121
+    addition_operator (135)
+        on left: 122 123
+        on right: 121
+    term (136)
+        on left: 124
+        on right: 115 121
+    multiplication_tail (137)
+        on left: 125 126
+        on right: 124 126
+    multiplication_operator (138)
+        on left: 127 128 129 130 131 132
+        on right: 126
+    factor (139)
+        on left: 133 134 135 136 137 138
+        on right: 124 126 138
+    identifier_factor (140)
+        on left: 139 140
+        on right: 136
+    variable_access (141)
+        on left: 141 142
+        on right: 72 73 78
+    selector (142)
+        on left: 143 144
+        on right: 140 142
+    indexed_selector (143)
+        on left: 145
+        on right: 143
+    field_selector (144)
+        on left: 146
+        on right: 144
+    constant_value (145)
+        on left: 147 148 149 150
+        on right: 12
+    numeric (146)
+        on left: 151 152
+        on right: 133 147
+    literal (147)
+        on left: 153 154
+        on right: 79 134 148
+    boolean_value (148)
+        on left: 155 156
+        on right: 135 149
+    program_name (149)
+        on left: 157
+        on right: 1
+    constant_name (150)
+        on left: 158
+        on right: 12 150
+    type_name (151)
+        on left: 159
+        on right: 18 60
+    field_name (152)
+        on left: 160
+        on right: 26 146
+    variable_name (153)
+        on left: 161
+        on right: 35 37 102
+    procedure_name (154)
+        on left: 162
+        on right: 44 80
+
+
+State 0
+
+    0 $accept: . program $end
+    1 program: . PROGRAM program_name SEMICOLON program_block DOT
+
+    PROGRAM  shift, and go to state 1
+
+    program  go to state 2
+
+
+State 1
+
+    1 program: PROGRAM . program_name SEMICOLON program_block DOT
+  157 program_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 3
+
+    program_name  go to state 4
+
+
+State 2
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 5
+
+
+State 3
+
+  157 program_name: IDENTIFIER .
+
+    $default  reduce using rule 157 (program_name)
+
+
+State 4
+
+    1 program: PROGRAM program_name . SEMICOLON program_block DOT
+
+    SEMICOLON  shift, and go to state 6
+
+
+State 5
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 6
+
+    1 program: PROGRAM program_name SEMICOLON . program_block DOT
+    2 program_block: . declaration_part_opt instruction_list
+    3 declaration_part_opt: %empty .  [LBRACE]
+    4                     | . declaration_part
+    5 declaration_part: . constant_definitions type_definitions_opt variable_definitions_opt procedure_definitions_opt
+    6                 | . type_definitions variable_definitions_opt procedure_definitions_opt
+    7                 | . variable_definitions procedure_definitions_opt
+    8                 | . procedure_definitions
+    9 constant_definitions: . CONST constant_definition constant_definition_tail
+   15 type_definitions: . TYPE type_definition type_definition_tail
+   31 variable_definitions: . VAR variable_definition variable_definition_tail
+   40 procedure_definitions: . procedure_definition procedure_definition_tail
+   43 procedure_definition: . procedure_header procedure_block SEMICOLON
+   44 procedure_header: . PROCEDURE procedure_name LPAREN formal_parameters_opt RPAREN SEMICOLON
+
+    CONST      shift, and go to state 7
+    TYPE       shift, and go to state 8
+    VAR        shift, and go to state 9
+    PROCEDURE  shift, and go to state 10
+
+    $default  reduce using rule 3 (declaration_part_opt)
+
+    program_block          go to state 11
+    declaration_part_opt   go to state 12
+    declaration_part       go to state 13
+    constant_definitions   go to state 14
+    type_definitions       go to state 15
+    variable_definitions   go to state 16
+    procedure_definitions  go to state 17
+    procedure_definition   go to state 18
+    procedure_header       go to state 19
+
+
+State 7
+
+    9 constant_definitions: CONST . constant_definition constant_definition_tail
+   12 constant_definition: . constant_name ASSIGN constant_value SEMICOLON
+  158 constant_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 20
+
+    constant_definition  go to state 21
+    constant_name        go to state 22
+
+
+State 8
+
+   15 type_definitions: TYPE . type_definition type_definition_tail
+   18 type_definition: . type_name ASSIGN compound_type SEMICOLON
+  159 type_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 23
+
+    type_definition  go to state 24
+    type_name        go to state 25
+
+
+State 9
+
+   31 variable_definitions: VAR . variable_definition variable_definition_tail
+   34 variable_definition: . variable_group SEMICOLON
+   35 variable_group: . variable_name variable_name_tail COLON data_type
+  161 variable_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 26
+
+    variable_definition  go to state 27
+    variable_group       go to state 28
+    variable_name        go to state 29
+
+
+State 10
+
+   44 procedure_header: PROCEDURE . procedure_name LPAREN formal_parameters_opt RPAREN SEMICOLON
+  162 procedure_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 30
+
+    procedure_name  go to state 31
+
+
+State 11
+
+    1 program: PROGRAM program_name SEMICOLON program_block . DOT
+
+    DOT  shift, and go to state 32
+
+
+State 12
+
+    2 program_block: declaration_part_opt . instruction_list
+   61 instruction_list: . LBRACE instruction instruction_tail RBRACE
+
+    LBRACE  shift, and go to state 33
+
+    instruction_list  go to state 34
+
+
+State 13
+
+    4 declaration_part_opt: declaration_part .
+
+    $default  reduce using rule 4 (declaration_part_opt)
+
+
+State 14
+
+    5 declaration_part: constant_definitions . type_definitions_opt variable_definitions_opt procedure_definitions_opt
+   13 type_definitions_opt: %empty .  [VAR, PROCEDURE, LBRACE]
+   14                     | . type_definitions
+   15 type_definitions: . TYPE type_definition type_definition_tail
+
+    TYPE  shift, and go to state 8
+
+    $default  reduce using rule 13 (type_definitions_opt)
+
+    type_definitions_opt  go to state 35
+    type_definitions      go to state 36
+
+
+State 15
+
+    6 declaration_part: type_definitions . variable_definitions_opt procedure_definitions_opt
+   29 variable_definitions_opt: %empty .  [PROCEDURE, LBRACE]
+   30                         | . variable_definitions
+   31 variable_definitions: . VAR variable_definition variable_definition_tail
+
+    VAR  shift, and go to state 9
+
+    $default  reduce using rule 29 (variable_definitions_opt)
+
+    variable_definitions_opt  go to state 37
+    variable_definitions      go to state 38
+
+
+State 16
+
+    7 declaration_part: variable_definitions . procedure_definitions_opt
+   38 procedure_definitions_opt: %empty .  [LBRACE]
+   39                          | . procedure_definitions
+   40 procedure_definitions: . procedure_definition procedure_definition_tail
+   43 procedure_definition: . procedure_header procedure_block SEMICOLON
+   44 procedure_header: . PROCEDURE procedure_name LPAREN formal_parameters_opt RPAREN SEMICOLON
+
+    PROCEDURE  shift, and go to state 10
+
+    $default  reduce using rule 38 (procedure_definitions_opt)
+
+    procedure_definitions_opt  go to state 39
+    procedure_definitions      go to state 40
+    procedure_definition       go to state 18
+    procedure_header           go to state 19
+
+
+State 17
+
+    8 declaration_part: procedure_definitions .
+
+    $default  reduce using rule 8 (declaration_part)
+
+
+State 18
+
+   40 procedure_definitions: procedure_definition . procedure_definition_tail
+   41 procedure_definition_tail: %empty .
+   42                          | . procedure_definition_tail procedure_definition
+
+    $default  reduce using rule 41 (procedure_definition_tail)
+
+    procedure_definition_tail  go to state 41
+
+
+State 19
+
+    2 program_block: . declaration_part_opt instruction_list
+    3 declaration_part_opt: %empty .  [LBRACE]
+    4                     | . declaration_part
+    5 declaration_part: . constant_definitions type_definitions_opt variable_definitions_opt procedure_definitions_opt
+    6                 | . type_definitions variable_definitions_opt procedure_definitions_opt
+    7                 | . variable_definitions procedure_definitions_opt
+    8                 | . procedure_definitions
+    9 constant_definitions: . CONST constant_definition constant_definition_tail
+   15 type_definitions: . TYPE type_definition type_definition_tail
+   31 variable_definitions: . VAR variable_definition variable_definition_tail
+   40 procedure_definitions: . procedure_definition procedure_definition_tail
+   43 procedure_definition: . procedure_header procedure_block SEMICOLON
+   43                     | procedure_header . procedure_block SEMICOLON
+   44 procedure_header: . PROCEDURE procedure_name LPAREN formal_parameters_opt RPAREN SEMICOLON
+   45 procedure_block: . program_block
+
+    CONST      shift, and go to state 7
+    TYPE       shift, and go to state 8
+    VAR        shift, and go to state 9
+    PROCEDURE  shift, and go to state 10
+
+    $default  reduce using rule 3 (declaration_part_opt)
+
+    program_block          go to state 42
+    declaration_part_opt   go to state 12
+    declaration_part       go to state 13
+    constant_definitions   go to state 14
+    type_definitions       go to state 15
+    variable_definitions   go to state 16
+    procedure_definitions  go to state 17
+    procedure_definition   go to state 18
+    procedure_header       go to state 19
+    procedure_block        go to state 43
+
+
+State 20
+
+  158 constant_name: IDENTIFIER .
+
+    $default  reduce using rule 158 (constant_name)
+
+
+State 21
+
+    9 constant_definitions: CONST constant_definition . constant_definition_tail
+   10 constant_definition_tail: %empty .
+   11                         | . constant_definition_tail constant_definition
+
+    $default  reduce using rule 10 (constant_definition_tail)
+
+    constant_definition_tail  go to state 44
+
+
+State 22
+
+   12 constant_definition: constant_name . ASSIGN constant_value SEMICOLON
+
+    ASSIGN  shift, and go to state 45
+
+
+State 23
+
+  159 type_name: IDENTIFIER .
+
+    $default  reduce using rule 159 (type_name)
+
+
+State 24
+
+   15 type_definitions: TYPE type_definition . type_definition_tail
+   16 type_definition_tail: %empty .
+   17                     | . type_definition_tail type_definition
+
+    $default  reduce using rule 16 (type_definition_tail)
+
+    type_definition_tail  go to state 46
+
+
+State 25
+
+   18 type_definition: type_name . ASSIGN compound_type SEMICOLON
+
+    ASSIGN  shift, and go to state 47
+
+
+State 26
+
+  161 variable_name: IDENTIFIER .
+
+    $default  reduce using rule 161 (variable_name)
+
+
+State 27
+
+   31 variable_definitions: VAR variable_definition . variable_definition_tail
+   32 variable_definition_tail: %empty .
+   33                         | . variable_definition_tail variable_definition
+
+    $default  reduce using rule 32 (variable_definition_tail)
+
+    variable_definition_tail  go to state 48
+
+
+State 28
+
+   34 variable_definition: variable_group . SEMICOLON
+
+    SEMICOLON  shift, and go to state 49
+
+
+State 29
+
+   35 variable_group: variable_name . variable_name_tail COLON data_type
+   36 variable_name_tail: %empty .
+   37                   | . variable_name_tail COMMA variable_name
+
+    $default  reduce using rule 36 (variable_name_tail)
+
+    variable_name_tail  go to state 50
+
+
+State 30
+
+  162 procedure_name: IDENTIFIER .
+
+    $default  reduce using rule 162 (procedure_name)
+
+
+State 31
+
+   44 procedure_header: PROCEDURE procedure_name . LPAREN formal_parameters_opt RPAREN SEMICOLON
+
+    LPAREN  shift, and go to state 51
+
+
+State 32
+
+    1 program: PROGRAM program_name SEMICOLON program_block DOT .
+
+    $default  reduce using rule 1 (program)
+
+
+State 33
+
+   61 instruction_list: . LBRACE instruction instruction_tail RBRACE
+   61                 | LBRACE . instruction instruction_tail RBRACE
+   64 instruction: . assignment_statement
+   65            | . input_statement
+   66            | . output_statement
+   67            | . procedure_call
+   68            | . conditional_statement
+   69            | . repetition_statement
+   70            | . instruction_list
+   71            | %empty .  [SEMICOLON, RBRACE]
+   72 assignment_statement: . variable_access ASSIGN expression
+   73 input_statement: . READ LPAREN variable_access RPAREN
+   74 output_statement: . PRINT LPAREN print_list RPAREN
+   80 procedure_call: . procedure_name LPAREN actual_parameters_opt RPAREN
+   87 conditional_statement: . if_statement
+   88                      | . if_else_statement
+   89                      | . if_else_if_statement
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   92 if_else_statement: . if_statement ELSE instruction
+   93 if_else_if_statement: . if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+   98 repetition_statement: . for_statement
+   99                     | . while_statement
+  100                     | . repeat_until_statement
+  101 for_statement: . FOR LPAREN repetition_range RPAREN instruction
+  105 while_statement: . WHILE LPAREN condition RPAREN DO instruction
+  106 repeat_until_statement: . REPEAT instruction UNTIL LPAREN condition RPAREN
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  162 procedure_name: . IDENTIFIER
+
+    READ        shift, and go to state 52
+    PRINT       shift, and go to state 53
+    IF          shift, and go to state 54
+    FOR         shift, and go to state 55
+    WHILE       shift, and go to state 56
+    REPEAT      shift, and go to state 57
+    LBRACE      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 58
+
+    $default  reduce using rule 71 (instruction)
+
+    instruction_list        go to state 59
+    instruction             go to state 60
+    assignment_statement    go to state 61
+    input_statement         go to state 62
+    output_statement        go to state 63
+    procedure_call          go to state 64
+    conditional_statement   go to state 65
+    if_statement            go to state 66
+    if_else_statement       go to state 67
+    if_else_if_statement    go to state 68
+    repetition_statement    go to state 69
+    for_statement           go to state 70
+    while_statement         go to state 71
+    repeat_until_statement  go to state 72
+    variable_access         go to state 73
+    procedure_name          go to state 74
+
+
+State 34
+
+    2 program_block: declaration_part_opt instruction_list .
+
+    $default  reduce using rule 2 (program_block)
+
+
+State 35
+
+    5 declaration_part: constant_definitions type_definitions_opt . variable_definitions_opt procedure_definitions_opt
+   29 variable_definitions_opt: %empty .  [PROCEDURE, LBRACE]
+   30                         | . variable_definitions
+   31 variable_definitions: . VAR variable_definition variable_definition_tail
+
+    VAR  shift, and go to state 9
+
+    $default  reduce using rule 29 (variable_definitions_opt)
+
+    variable_definitions_opt  go to state 75
+    variable_definitions      go to state 38
+
+
+State 36
+
+   14 type_definitions_opt: type_definitions .
+
+    $default  reduce using rule 14 (type_definitions_opt)
+
+
+State 37
+
+    6 declaration_part: type_definitions variable_definitions_opt . procedure_definitions_opt
+   38 procedure_definitions_opt: %empty .  [LBRACE]
+   39                          | . procedure_definitions
+   40 procedure_definitions: . procedure_definition procedure_definition_tail
+   43 procedure_definition: . procedure_header procedure_block SEMICOLON
+   44 procedure_header: . PROCEDURE procedure_name LPAREN formal_parameters_opt RPAREN SEMICOLON
+
+    PROCEDURE  shift, and go to state 10
+
+    $default  reduce using rule 38 (procedure_definitions_opt)
+
+    procedure_definitions_opt  go to state 76
+    procedure_definitions      go to state 40
+    procedure_definition       go to state 18
+    procedure_header           go to state 19
+
+
+State 38
+
+   30 variable_definitions_opt: variable_definitions .
+
+    $default  reduce using rule 30 (variable_definitions_opt)
+
+
+State 39
+
+    7 declaration_part: variable_definitions procedure_definitions_opt .
+
+    $default  reduce using rule 7 (declaration_part)
+
+
+State 40
+
+   39 procedure_definitions_opt: procedure_definitions .
+
+    $default  reduce using rule 39 (procedure_definitions_opt)
+
+
+State 41
+
+   40 procedure_definitions: procedure_definition procedure_definition_tail .  [LBRACE]
+   42 procedure_definition_tail: procedure_definition_tail . procedure_definition
+   43 procedure_definition: . procedure_header procedure_block SEMICOLON
+   44 procedure_header: . PROCEDURE procedure_name LPAREN formal_parameters_opt RPAREN SEMICOLON
+
+    PROCEDURE  shift, and go to state 10
+
+    $default  reduce using rule 40 (procedure_definitions)
+
+    procedure_definition  go to state 77
+    procedure_header      go to state 19
+
+
+State 42
+
+   45 procedure_block: program_block .
+
+    $default  reduce using rule 45 (procedure_block)
+
+
+State 43
+
+   43 procedure_definition: procedure_header procedure_block . SEMICOLON
+
+    SEMICOLON  shift, and go to state 78
+
+
+State 44
+
+    9 constant_definitions: CONST constant_definition constant_definition_tail .  [TYPE, VAR, PROCEDURE, LBRACE]
+   11 constant_definition_tail: constant_definition_tail . constant_definition
+   12 constant_definition: . constant_name ASSIGN constant_value SEMICOLON
+  158 constant_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 20
+
+    $default  reduce using rule 9 (constant_definitions)
+
+    constant_definition  go to state 79
+    constant_name        go to state 22
+
+
+State 45
+
+   12 constant_definition: constant_name ASSIGN . constant_value SEMICOLON
+  147 constant_value: . numeric
+  148               | . literal
+  149               | . boolean_value
+  150               | . constant_name
+  151 numeric: . INTEGER_LITERAL
+  152        | . REAL_LITERAL
+  153 literal: . STRING_LITERAL
+  154        | . CHAR_LITERAL
+  155 boolean_value: . TRUE
+  156              | . FALSE
+  158 constant_name: . IDENTIFIER
+
+    TRUE             shift, and go to state 80
+    FALSE            shift, and go to state 81
+    IDENTIFIER       shift, and go to state 20
+    INTEGER_LITERAL  shift, and go to state 82
+    REAL_LITERAL     shift, and go to state 83
+    STRING_LITERAL   shift, and go to state 84
+    CHAR_LITERAL     shift, and go to state 85
+
+    constant_value  go to state 86
+    numeric         go to state 87
+    literal         go to state 88
+    boolean_value   go to state 89
+    constant_name   go to state 90
+
+
+State 46
+
+   15 type_definitions: TYPE type_definition type_definition_tail .  [VAR, PROCEDURE, LBRACE]
+   17 type_definition_tail: type_definition_tail . type_definition
+   18 type_definition: . type_name ASSIGN compound_type SEMICOLON
+  159 type_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 23
+
+    $default  reduce using rule 15 (type_definitions)
+
+    type_definition  go to state 91
+    type_name        go to state 25
+
+
+State 47
+
+   18 type_definition: type_name ASSIGN . compound_type SEMICOLON
+   19 compound_type: . list_type
+   20              | . record_type
+   21 list_type: . LIST LBRACKET INTEGER_LITERAL RBRACKET OF data_type
+   22 record_type: . RECORD LBRACE field_list RBRACE
+
+    LIST    shift, and go to state 92
+    RECORD  shift, and go to state 93
+
+    compound_type  go to state 94
+    list_type      go to state 95
+    record_type    go to state 96
+
+
+State 48
+
+   31 variable_definitions: VAR variable_definition variable_definition_tail .  [PROCEDURE, LBRACE]
+   33 variable_definition_tail: variable_definition_tail . variable_definition
+   34 variable_definition: . variable_group SEMICOLON
+   35 variable_group: . variable_name variable_name_tail COLON data_type
+  161 variable_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 26
+
+    $default  reduce using rule 31 (variable_definitions)
+
+    variable_definition  go to state 97
+    variable_group       go to state 28
+    variable_name        go to state 29
+
+
+State 49
+
+   34 variable_definition: variable_group SEMICOLON .
+
+    $default  reduce using rule 34 (variable_definition)
+
+
+State 50
+
+   35 variable_group: variable_name variable_name_tail . COLON data_type
+   37 variable_name_tail: variable_name_tail . COMMA variable_name
+
+    COLON  shift, and go to state 98
+    COMMA  shift, and go to state 99
+
+
+State 51
+
+   44 procedure_header: PROCEDURE procedure_name LPAREN . formal_parameters_opt RPAREN SEMICOLON
+   46 formal_parameters_opt: %empty .  [RPAREN]
+   47                      | . formal_parameters
+   48 formal_parameters: . formal_parameter formal_parameter_tail
+   51 formal_parameter: . pass_mode_opt variable_group
+   52 pass_mode_opt: %empty .  [IDENTIFIER]
+   53              | . BY_VALUE
+   54              | . BY_REFERENCE
+
+    BY_VALUE      shift, and go to state 100
+    BY_REFERENCE  shift, and go to state 101
+
+    IDENTIFIER  reduce using rule 52 (pass_mode_opt)
+    $default    reduce using rule 46 (formal_parameters_opt)
+
+    formal_parameters_opt  go to state 102
+    formal_parameters      go to state 103
+    formal_parameter       go to state 104
+    pass_mode_opt          go to state 105
+
+
+State 52
+
+   73 input_statement: READ . LPAREN variable_access RPAREN
+
+    LPAREN  shift, and go to state 106
+
+
+State 53
+
+   74 output_statement: PRINT . LPAREN print_list RPAREN
+
+    LPAREN  shift, and go to state 107
+
+
+State 54
+
+   90 if_statement: IF . LPAREN condition RPAREN THEN instruction
+
+    LPAREN  shift, and go to state 108
+
+
+State 55
+
+  101 for_statement: FOR . LPAREN repetition_range RPAREN instruction
+
+    LPAREN  shift, and go to state 109
+
+
+State 56
+
+  105 while_statement: WHILE . LPAREN condition RPAREN DO instruction
+
+    LPAREN  shift, and go to state 110
+
+
+State 57
+
+   61 instruction_list: . LBRACE instruction instruction_tail RBRACE
+   64 instruction: . assignment_statement
+   65            | . input_statement
+   66            | . output_statement
+   67            | . procedure_call
+   68            | . conditional_statement
+   69            | . repetition_statement
+   70            | . instruction_list
+   71            | %empty .  [UNTIL]
+   72 assignment_statement: . variable_access ASSIGN expression
+   73 input_statement: . READ LPAREN variable_access RPAREN
+   74 output_statement: . PRINT LPAREN print_list RPAREN
+   80 procedure_call: . procedure_name LPAREN actual_parameters_opt RPAREN
+   87 conditional_statement: . if_statement
+   88                      | . if_else_statement
+   89                      | . if_else_if_statement
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   92 if_else_statement: . if_statement ELSE instruction
+   93 if_else_if_statement: . if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+   98 repetition_statement: . for_statement
+   99                     | . while_statement
+  100                     | . repeat_until_statement
+  101 for_statement: . FOR LPAREN repetition_range RPAREN instruction
+  105 while_statement: . WHILE LPAREN condition RPAREN DO instruction
+  106 repeat_until_statement: . REPEAT instruction UNTIL LPAREN condition RPAREN
+  106                       | REPEAT . instruction UNTIL LPAREN condition RPAREN
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  162 procedure_name: . IDENTIFIER
+
+    READ        shift, and go to state 52
+    PRINT       shift, and go to state 53
+    IF          shift, and go to state 54
+    FOR         shift, and go to state 55
+    WHILE       shift, and go to state 56
+    REPEAT      shift, and go to state 57
+    LBRACE      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 58
+
+    $default  reduce using rule 71 (instruction)
+
+    instruction_list        go to state 59
+    instruction             go to state 111
+    assignment_statement    go to state 61
+    input_statement         go to state 62
+    output_statement        go to state 63
+    procedure_call          go to state 64
+    conditional_statement   go to state 65
+    if_statement            go to state 66
+    if_else_statement       go to state 67
+    if_else_if_statement    go to state 68
+    repetition_statement    go to state 69
+    for_statement           go to state 70
+    while_statement         go to state 71
+    repeat_until_statement  go to state 72
+    variable_access         go to state 73
+    procedure_name          go to state 74
+
+
+State 58
+
+  141 variable_access: IDENTIFIER .  [ASSIGN]
+  142                | IDENTIFIER . selector
+  143 selector: . indexed_selector
+  144         | . field_selector
+  145 indexed_selector: . LBRACKET expression RBRACKET
+  146 field_selector: . DOT field_name
+  162 procedure_name: IDENTIFIER .  [LPAREN]
+
+    DOT       shift, and go to state 112
+    LBRACKET  shift, and go to state 113
+
+    LPAREN    reduce using rule 162 (procedure_name)
+    $default  reduce using rule 141 (variable_access)
+
+    selector          go to state 114
+    indexed_selector  go to state 115
+    field_selector    go to state 116
+
+
+State 59
+
+   70 instruction: instruction_list .
+
+    $default  reduce using rule 70 (instruction)
+
+
+State 60
+
+   61 instruction_list: LBRACE instruction . instruction_tail RBRACE
+   62 instruction_tail: %empty .
+   63                 | . instruction_tail SEMICOLON instruction
+
+    $default  reduce using rule 62 (instruction_tail)
+
+    instruction_tail  go to state 117
+
+
+State 61
+
+   64 instruction: assignment_statement .
+
+    $default  reduce using rule 64 (instruction)
+
+
+State 62
+
+   65 instruction: input_statement .
+
+    $default  reduce using rule 65 (instruction)
+
+
+State 63
+
+   66 instruction: output_statement .
+
+    $default  reduce using rule 66 (instruction)
+
+
+State 64
+
+   67 instruction: procedure_call .
+
+    $default  reduce using rule 67 (instruction)
+
+
+State 65
+
+   68 instruction: conditional_statement .
+
+    $default  reduce using rule 68 (instruction)
+
+
+State 66
+
+   87 conditional_statement: if_statement .  [ELSE, UNTIL, SEMICOLON, RBRACE]
+   92 if_else_statement: if_statement . ELSE instruction
+   93 if_else_if_statement: if_statement . SEMICOLON ELSE if_statement else_if_tail optional_else
+
+    ELSE       shift, and go to state 118
+    SEMICOLON  shift, and go to state 119
+
+    ELSE       [reduce using rule 87 (conditional_statement)]
+    SEMICOLON  [reduce using rule 87 (conditional_statement)]
+    $default   reduce using rule 87 (conditional_statement)
+
+    shift/reduce conflict on token ELSE:
+       87 conditional_statement: if_statement .
+       92 if_else_statement: if_statement . ELSE instruction
+      Example: IF LPAREN condition RPAREN THEN if_statement . ELSE
+      Shift derivation
+        conditional_statement
+        `-> 87: if_statement
+                `-> 90: IF LPAREN condition RPAREN THEN instruction
+                                                        `-> 68: conditional_statement
+                                                                `-> 88: if_else_statement
+                                                                        `-> 92: if_statement . ELSE instruction
+                                                                                                    `-> 92: %empty
+      Reduce derivation
+        conditional_statement
+        `-> 88: if_else_statement
+                `-> 92: if_statement                                                           ELSE instruction
+                        `-> 90: IF LPAREN condition RPAREN THEN instruction                         `-> 92: %empty
+                                                                `-> 68: conditional_statement
+                                                                        `-> 87: if_statement .
+
+    shift/reduce conflict on token SEMICOLON:
+       87 conditional_statement: if_statement .
+       93 if_else_if_statement: if_statement . SEMICOLON ELSE if_statement else_if_tail optional_else
+      First example: PROGRAM program_name SEMICOLON LBRACE if_statement . SEMICOLON ELSE if_statement else_if_tail optional_else instruction_tail RBRACE instruction_list DOT $end
+      Shift derivation
+        $accept
+        `-> 0: program                                                                                                                                                                                                $end
+               `-> 1: PROGRAM program_name SEMICOLON program_block                                                                                                                                                DOT
+                                                     `-> 2: instruction_list                                                                                                                     instruction_list
+                                                            `-> 61: LBRACE instruction                                                                                   instruction_tail RBRACE
+                                                                           `-> 68: conditional_statement
+                                                                                   `-> 89: if_else_if_statement
+                                                                                           `-> 93: if_statement . SEMICOLON ELSE if_statement else_if_tail optional_else
+      Second example: PROGRAM program_name SEMICOLON declaration_part_opt LBRACE if_statement . instruction_tail SEMICOLON SEMICOLON instruction RBRACE DOT $end
+      Reduce derivation
+        $accept
+        `-> 0: program                                                                                                                                                                             $end
+               `-> 1: PROGRAM program_name SEMICOLON program_block                                                                                                                             DOT
+                                                     `-> 2: declaration_part_opt instruction_list
+                                                                                 `-> 61: LBRACE instruction                    instruction_tail                                         RBRACE
+                                                                                                `-> 68: conditional_statement  `-> 63: instruction_tail SEMICOLON SEMICOLON instruction
+                                                                                                        `-> 87: if_statement .
+
+
+
+State 67
+
+   88 conditional_statement: if_else_statement .
+
+    $default  reduce using rule 88 (conditional_statement)
+
+
+State 68
+
+   89 conditional_statement: if_else_if_statement .
+
+    $default  reduce using rule 89 (conditional_statement)
+
+
+State 69
+
+   69 instruction: repetition_statement .
+
+    $default  reduce using rule 69 (instruction)
+
+
+State 70
+
+   98 repetition_statement: for_statement .
+
+    $default  reduce using rule 98 (repetition_statement)
+
+
+State 71
+
+   99 repetition_statement: while_statement .
+
+    $default  reduce using rule 99 (repetition_statement)
+
+
+State 72
+
+  100 repetition_statement: repeat_until_statement .
+
+    $default  reduce using rule 100 (repetition_statement)
+
+
+State 73
+
+   72 assignment_statement: variable_access . ASSIGN expression
+
+    ASSIGN  shift, and go to state 120
+
+
+State 74
+
+   80 procedure_call: procedure_name . LPAREN actual_parameters_opt RPAREN
+
+    LPAREN  shift, and go to state 121
+
+
+State 75
+
+    5 declaration_part: constant_definitions type_definitions_opt variable_definitions_opt . procedure_definitions_opt
+   38 procedure_definitions_opt: %empty .  [LBRACE]
+   39                          | . procedure_definitions
+   40 procedure_definitions: . procedure_definition procedure_definition_tail
+   43 procedure_definition: . procedure_header procedure_block SEMICOLON
+   44 procedure_header: . PROCEDURE procedure_name LPAREN formal_parameters_opt RPAREN SEMICOLON
+
+    PROCEDURE  shift, and go to state 10
+
+    $default  reduce using rule 38 (procedure_definitions_opt)
+
+    procedure_definitions_opt  go to state 122
+    procedure_definitions      go to state 40
+    procedure_definition       go to state 18
+    procedure_header           go to state 19
+
+
+State 76
+
+    6 declaration_part: type_definitions variable_definitions_opt procedure_definitions_opt .
+
+    $default  reduce using rule 6 (declaration_part)
+
+
+State 77
+
+   42 procedure_definition_tail: procedure_definition_tail procedure_definition .
+
+    $default  reduce using rule 42 (procedure_definition_tail)
+
+
+State 78
+
+   43 procedure_definition: procedure_header procedure_block SEMICOLON .
+
+    $default  reduce using rule 43 (procedure_definition)
+
+
+State 79
+
+   11 constant_definition_tail: constant_definition_tail constant_definition .
+
+    $default  reduce using rule 11 (constant_definition_tail)
+
+
+State 80
+
+  155 boolean_value: TRUE .
+
+    $default  reduce using rule 155 (boolean_value)
+
+
+State 81
+
+  156 boolean_value: FALSE .
+
+    $default  reduce using rule 156 (boolean_value)
+
+
+State 82
+
+  151 numeric: INTEGER_LITERAL .
+
+    $default  reduce using rule 151 (numeric)
+
+
+State 83
+
+  152 numeric: REAL_LITERAL .
+
+    $default  reduce using rule 152 (numeric)
+
+
+State 84
+
+  153 literal: STRING_LITERAL .
+
+    $default  reduce using rule 153 (literal)
+
+
+State 85
+
+  154 literal: CHAR_LITERAL .
+
+    $default  reduce using rule 154 (literal)
+
+
+State 86
+
+   12 constant_definition: constant_name ASSIGN constant_value . SEMICOLON
+
+    SEMICOLON  shift, and go to state 123
+
+
+State 87
+
+  147 constant_value: numeric .
+
+    $default  reduce using rule 147 (constant_value)
+
+
+State 88
+
+  148 constant_value: literal .
+
+    $default  reduce using rule 148 (constant_value)
+
+
+State 89
+
+  149 constant_value: boolean_value .
+
+    $default  reduce using rule 149 (constant_value)
+
+
+State 90
+
+  150 constant_value: constant_name .
+
+    $default  reduce using rule 150 (constant_value)
+
+
+State 91
+
+   17 type_definition_tail: type_definition_tail type_definition .
+
+    $default  reduce using rule 17 (type_definition_tail)
+
+
+State 92
+
+   21 list_type: LIST . LBRACKET INTEGER_LITERAL RBRACKET OF data_type
+
+    LBRACKET  shift, and go to state 124
+
+
+State 93
+
+   22 record_type: RECORD . LBRACE field_list RBRACE
+
+    LBRACE  shift, and go to state 125
+
+
+State 94
+
+   18 type_definition: type_name ASSIGN compound_type . SEMICOLON
+
+    SEMICOLON  shift, and go to state 126
+
+
+State 95
+
+   19 compound_type: list_type .
+
+    $default  reduce using rule 19 (compound_type)
+
+
+State 96
+
+   20 compound_type: record_type .
+
+    $default  reduce using rule 20 (compound_type)
+
+
+State 97
+
+   33 variable_definition_tail: variable_definition_tail variable_definition .
+
+    $default  reduce using rule 33 (variable_definition_tail)
+
+
+State 98
+
+   35 variable_group: variable_name variable_name_tail COLON . data_type
+   55 data_type: . INT_TYPE
+   56          | . REAL_TYPE
+   57          | . BOOL_TYPE
+   58          | . CHAR_TYPE
+   59          | . STRING_TYPE
+   60          | . type_name
+  159 type_name: . IDENTIFIER
+
+    INT_TYPE     shift, and go to state 127
+    REAL_TYPE    shift, and go to state 128
+    BOOL_TYPE    shift, and go to state 129
+    CHAR_TYPE    shift, and go to state 130
+    STRING_TYPE  shift, and go to state 131
+    IDENTIFIER   shift, and go to state 23
+
+    data_type  go to state 132
+    type_name  go to state 133
+
+
+State 99
+
+   37 variable_name_tail: variable_name_tail COMMA . variable_name
+  161 variable_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 26
+
+    variable_name  go to state 134
+
+
+State 100
+
+   53 pass_mode_opt: BY_VALUE .
+
+    $default  reduce using rule 53 (pass_mode_opt)
+
+
+State 101
+
+   54 pass_mode_opt: BY_REFERENCE .
+
+    $default  reduce using rule 54 (pass_mode_opt)
+
+
+State 102
+
+   44 procedure_header: PROCEDURE procedure_name LPAREN formal_parameters_opt . RPAREN SEMICOLON
+
+    RPAREN  shift, and go to state 135
+
+
+State 103
+
+   47 formal_parameters_opt: formal_parameters .
+
+    $default  reduce using rule 47 (formal_parameters_opt)
+
+
+State 104
+
+   48 formal_parameters: formal_parameter . formal_parameter_tail
+   49 formal_parameter_tail: %empty .
+   50                      | . formal_parameter_tail SEMICOLON formal_parameter
+
+    $default  reduce using rule 49 (formal_parameter_tail)
+
+    formal_parameter_tail  go to state 136
+
+
+State 105
+
+   35 variable_group: . variable_name variable_name_tail COLON data_type
+   51 formal_parameter: pass_mode_opt . variable_group
+  161 variable_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 26
+
+    variable_group  go to state 137
+    variable_name   go to state 29
+
+
+State 106
+
+   73 input_statement: READ LPAREN . variable_access RPAREN
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+
+    IDENTIFIER  shift, and go to state 138
+
+    variable_access  go to state 139
+
+
+State 107
+
+   74 output_statement: PRINT LPAREN . print_list RPAREN
+   75 print_list: . print_item print_item_tail
+   78 print_item: . variable_access
+   79           | . literal
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  153 literal: . STRING_LITERAL
+  154        | . CHAR_LITERAL
+
+    IDENTIFIER      shift, and go to state 138
+    STRING_LITERAL  shift, and go to state 84
+    CHAR_LITERAL    shift, and go to state 85
+
+    print_list       go to state 140
+    print_item       go to state 141
+    variable_access  go to state 142
+    literal          go to state 143
+
+
+State 108
+
+   90 if_statement: IF LPAREN . condition RPAREN THEN instruction
+   91 condition: . expression
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    condition          go to state 146
+    expression         go to state 147
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 109
+
+  101 for_statement: FOR LPAREN . repetition_range RPAREN instruction
+  102 repetition_range: . variable_name ASSIGN expression TO expression step_opt
+  161 variable_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 26
+
+    repetition_range  go to state 151
+    variable_name     go to state 152
+
+
+State 110
+
+   91 condition: . expression
+  105 while_statement: WHILE LPAREN . condition RPAREN DO instruction
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    condition          go to state 153
+    expression         go to state 147
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 111
+
+  106 repeat_until_statement: REPEAT instruction . UNTIL LPAREN condition RPAREN
+
+    UNTIL  shift, and go to state 154
+
+
+State 112
+
+  146 field_selector: DOT . field_name
+  160 field_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 155
+
+    field_name  go to state 156
+
+
+State 113
+
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+  145 indexed_selector: LBRACKET . expression RBRACKET
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    expression         go to state 157
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 114
+
+  142 variable_access: IDENTIFIER selector .
+
+    $default  reduce using rule 142 (variable_access)
+
+
+State 115
+
+  143 selector: indexed_selector .
+
+    $default  reduce using rule 143 (selector)
+
+
+State 116
+
+  144 selector: field_selector .
+
+    $default  reduce using rule 144 (selector)
+
+
+State 117
+
+   61 instruction_list: LBRACE instruction instruction_tail . RBRACE
+   63 instruction_tail: instruction_tail . SEMICOLON instruction
+
+    SEMICOLON  shift, and go to state 158
+    RBRACE     shift, and go to state 159
+
+
+State 118
+
+   61 instruction_list: . LBRACE instruction instruction_tail RBRACE
+   64 instruction: . assignment_statement
+   65            | . input_statement
+   66            | . output_statement
+   67            | . procedure_call
+   68            | . conditional_statement
+   69            | . repetition_statement
+   70            | . instruction_list
+   71            | %empty .  [ELSE, UNTIL, SEMICOLON, RBRACE]
+   72 assignment_statement: . variable_access ASSIGN expression
+   73 input_statement: . READ LPAREN variable_access RPAREN
+   74 output_statement: . PRINT LPAREN print_list RPAREN
+   80 procedure_call: . procedure_name LPAREN actual_parameters_opt RPAREN
+   87 conditional_statement: . if_statement
+   88                      | . if_else_statement
+   89                      | . if_else_if_statement
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   92 if_else_statement: . if_statement ELSE instruction
+   92                  | if_statement ELSE . instruction
+   93 if_else_if_statement: . if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+   98 repetition_statement: . for_statement
+   99                     | . while_statement
+  100                     | . repeat_until_statement
+  101 for_statement: . FOR LPAREN repetition_range RPAREN instruction
+  105 while_statement: . WHILE LPAREN condition RPAREN DO instruction
+  106 repeat_until_statement: . REPEAT instruction UNTIL LPAREN condition RPAREN
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  162 procedure_name: . IDENTIFIER
+
+    READ        shift, and go to state 52
+    PRINT       shift, and go to state 53
+    IF          shift, and go to state 54
+    FOR         shift, and go to state 55
+    WHILE       shift, and go to state 56
+    REPEAT      shift, and go to state 57
+    LBRACE      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 58
+
+    $default  reduce using rule 71 (instruction)
+
+    instruction_list        go to state 59
+    instruction             go to state 160
+    assignment_statement    go to state 61
+    input_statement         go to state 62
+    output_statement        go to state 63
+    procedure_call          go to state 64
+    conditional_statement   go to state 65
+    if_statement            go to state 66
+    if_else_statement       go to state 67
+    if_else_if_statement    go to state 68
+    repetition_statement    go to state 69
+    for_statement           go to state 70
+    while_statement         go to state 71
+    repeat_until_statement  go to state 72
+    variable_access         go to state 73
+    procedure_name          go to state 74
+
+
+State 119
+
+   93 if_else_if_statement: if_statement SEMICOLON . ELSE if_statement else_if_tail optional_else
+
+    ELSE  shift, and go to state 161
+
+
+State 120
+
+   72 assignment_statement: variable_access ASSIGN . expression
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    expression         go to state 162
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 121
+
+   80 procedure_call: procedure_name LPAREN . actual_parameters_opt RPAREN
+   81 actual_parameters_opt: %empty .  [RPAREN]
+   82                      | . actual_parameters
+   83 actual_parameters: . actual_parameter actual_parameter_tail
+   86 actual_parameter: . expression
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    RPAREN    reduce using rule 81 (actual_parameters_opt)
+    $default  reduce using rule 116 (sign_opt)
+
+    actual_parameters_opt  go to state 163
+    actual_parameters      go to state 164
+    actual_parameter       go to state 165
+    expression             go to state 166
+    simple_expression      go to state 148
+    sign_opt               go to state 149
+    sign_operator          go to state 150
+
+
+State 122
+
+    5 declaration_part: constant_definitions type_definitions_opt variable_definitions_opt procedure_definitions_opt .
+
+    $default  reduce using rule 5 (declaration_part)
+
+
+State 123
+
+   12 constant_definition: constant_name ASSIGN constant_value SEMICOLON .
+
+    $default  reduce using rule 12 (constant_definition)
+
+
+State 124
+
+   21 list_type: LIST LBRACKET . INTEGER_LITERAL RBRACKET OF data_type
+
+    INTEGER_LITERAL  shift, and go to state 167
+
+
+State 125
+
+   22 record_type: RECORD LBRACE . field_list RBRACE
+   23 field_list: . field_definition field_definition_tail
+   26 field_definition: . field_name identifier_tail COLON data_type
+  160 field_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 155
+
+    field_list        go to state 168
+    field_definition  go to state 169
+    field_name        go to state 170
+
+
+State 126
+
+   18 type_definition: type_name ASSIGN compound_type SEMICOLON .
+
+    $default  reduce using rule 18 (type_definition)
+
+
+State 127
+
+   55 data_type: INT_TYPE .
+
+    $default  reduce using rule 55 (data_type)
+
+
+State 128
+
+   56 data_type: REAL_TYPE .
+
+    $default  reduce using rule 56 (data_type)
+
+
+State 129
+
+   57 data_type: BOOL_TYPE .
+
+    $default  reduce using rule 57 (data_type)
+
+
+State 130
+
+   58 data_type: CHAR_TYPE .
+
+    $default  reduce using rule 58 (data_type)
+
+
+State 131
+
+   59 data_type: STRING_TYPE .
+
+    $default  reduce using rule 59 (data_type)
+
+
+State 132
+
+   35 variable_group: variable_name variable_name_tail COLON data_type .
+
+    $default  reduce using rule 35 (variable_group)
+
+
+State 133
+
+   60 data_type: type_name .
+
+    $default  reduce using rule 60 (data_type)
+
+
+State 134
+
+   37 variable_name_tail: variable_name_tail COMMA variable_name .
+
+    $default  reduce using rule 37 (variable_name_tail)
+
+
+State 135
+
+   44 procedure_header: PROCEDURE procedure_name LPAREN formal_parameters_opt RPAREN . SEMICOLON
+
+    SEMICOLON  shift, and go to state 171
+
+
+State 136
+
+   48 formal_parameters: formal_parameter formal_parameter_tail .  [RPAREN]
+   50 formal_parameter_tail: formal_parameter_tail . SEMICOLON formal_parameter
+
+    SEMICOLON  shift, and go to state 172
+
+    $default  reduce using rule 48 (formal_parameters)
+
+
+State 137
+
+   51 formal_parameter: pass_mode_opt variable_group .
+
+    $default  reduce using rule 51 (formal_parameter)
+
+
+State 138
+
+  141 variable_access: IDENTIFIER .  [COMMA, RPAREN]
+  142                | IDENTIFIER . selector
+  143 selector: . indexed_selector
+  144         | . field_selector
+  145 indexed_selector: . LBRACKET expression RBRACKET
+  146 field_selector: . DOT field_name
+
+    DOT       shift, and go to state 112
+    LBRACKET  shift, and go to state 113
+
+    $default  reduce using rule 141 (variable_access)
+
+    selector          go to state 114
+    indexed_selector  go to state 115
+    field_selector    go to state 116
+
+
+State 139
+
+   73 input_statement: READ LPAREN variable_access . RPAREN
+
+    RPAREN  shift, and go to state 173
+
+
+State 140
+
+   74 output_statement: PRINT LPAREN print_list . RPAREN
+
+    RPAREN  shift, and go to state 174
+
+
+State 141
+
+   75 print_list: print_item . print_item_tail
+   76 print_item_tail: %empty .
+   77                | . print_item_tail COMMA print_item
+
+    $default  reduce using rule 76 (print_item_tail)
+
+    print_item_tail  go to state 175
+
+
+State 142
+
+   78 print_item: variable_access .
+
+    $default  reduce using rule 78 (print_item)
+
+
+State 143
+
+   79 print_item: literal .
+
+    $default  reduce using rule 79 (print_item)
+
+
+State 144
+
+  118 sign_operator: PLUS .
+
+    $default  reduce using rule 118 (sign_operator)
+
+
+State 145
+
+  119 sign_operator: MINUS .
+
+    $default  reduce using rule 119 (sign_operator)
+
+
+State 146
+
+   90 if_statement: IF LPAREN condition . RPAREN THEN instruction
+
+    RPAREN  shift, and go to state 176
+
+
+State 147
+
+   91 condition: expression .
+
+    $default  reduce using rule 91 (condition)
+
+
+State 148
+
+  107 expression: simple_expression .  [ELSE, TO, STEP, UNTIL, SEMICOLON, COMMA, RBRACE, RBRACKET, RPAREN]
+  108           | simple_expression . relational_operator simple_expression
+  109 relational_operator: . LT
+  110                    | . GT
+  111                    | . LE
+  112                    | . GE
+  113                    | . EQ
+  114                    | . NE
+
+    LT  shift, and go to state 177
+    GT  shift, and go to state 178
+    LE  shift, and go to state 179
+    GE  shift, and go to state 180
+    EQ  shift, and go to state 181
+    NE  shift, and go to state 182
+
+    $default  reduce using rule 107 (expression)
+
+    relational_operator  go to state 183
+
+
+State 149
+
+  115 simple_expression: sign_opt . term addition_tail
+  124 term: . factor multiplication_tail
+  133 factor: . numeric
+  134       | . literal
+  135       | . boolean_value
+  136       | . identifier_factor
+  137       | . LPAREN expression RPAREN
+  138       | . NOT factor
+  139 identifier_factor: . IDENTIFIER
+  140                  | . IDENTIFIER selector
+  151 numeric: . INTEGER_LITERAL
+  152        | . REAL_LITERAL
+  153 literal: . STRING_LITERAL
+  154        | . CHAR_LITERAL
+  155 boolean_value: . TRUE
+  156              | . FALSE
+
+    TRUE             shift, and go to state 80
+    FALSE            shift, and go to state 81
+    NOT              shift, and go to state 184
+    LPAREN           shift, and go to state 185
+    IDENTIFIER       shift, and go to state 186
+    INTEGER_LITERAL  shift, and go to state 82
+    REAL_LITERAL     shift, and go to state 83
+    STRING_LITERAL   shift, and go to state 84
+    CHAR_LITERAL     shift, and go to state 85
+
+    term               go to state 187
+    factor             go to state 188
+    identifier_factor  go to state 189
+    numeric            go to state 190
+    literal            go to state 191
+    boolean_value      go to state 192
+
+
+State 150
+
+  117 sign_opt: sign_operator .
+
+    $default  reduce using rule 117 (sign_opt)
+
+
+State 151
+
+  101 for_statement: FOR LPAREN repetition_range . RPAREN instruction
+
+    RPAREN  shift, and go to state 193
+
+
+State 152
+
+  102 repetition_range: variable_name . ASSIGN expression TO expression step_opt
+
+    ASSIGN  shift, and go to state 194
+
+
+State 153
+
+  105 while_statement: WHILE LPAREN condition . RPAREN DO instruction
+
+    RPAREN  shift, and go to state 195
+
+
+State 154
+
+  106 repeat_until_statement: REPEAT instruction UNTIL . LPAREN condition RPAREN
+
+    LPAREN  shift, and go to state 196
+
+
+State 155
+
+  160 field_name: IDENTIFIER .
+
+    $default  reduce using rule 160 (field_name)
+
+
+State 156
+
+  146 field_selector: DOT field_name .
+
+    $default  reduce using rule 146 (field_selector)
+
+
+State 157
+
+  145 indexed_selector: LBRACKET expression . RBRACKET
+
+    RBRACKET  shift, and go to state 197
+
+
+State 158
+
+   61 instruction_list: . LBRACE instruction instruction_tail RBRACE
+   63 instruction_tail: instruction_tail SEMICOLON . instruction
+   64 instruction: . assignment_statement
+   65            | . input_statement
+   66            | . output_statement
+   67            | . procedure_call
+   68            | . conditional_statement
+   69            | . repetition_statement
+   70            | . instruction_list
+   71            | %empty .  [SEMICOLON, RBRACE]
+   72 assignment_statement: . variable_access ASSIGN expression
+   73 input_statement: . READ LPAREN variable_access RPAREN
+   74 output_statement: . PRINT LPAREN print_list RPAREN
+   80 procedure_call: . procedure_name LPAREN actual_parameters_opt RPAREN
+   87 conditional_statement: . if_statement
+   88                      | . if_else_statement
+   89                      | . if_else_if_statement
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   92 if_else_statement: . if_statement ELSE instruction
+   93 if_else_if_statement: . if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+   98 repetition_statement: . for_statement
+   99                     | . while_statement
+  100                     | . repeat_until_statement
+  101 for_statement: . FOR LPAREN repetition_range RPAREN instruction
+  105 while_statement: . WHILE LPAREN condition RPAREN DO instruction
+  106 repeat_until_statement: . REPEAT instruction UNTIL LPAREN condition RPAREN
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  162 procedure_name: . IDENTIFIER
+
+    READ        shift, and go to state 52
+    PRINT       shift, and go to state 53
+    IF          shift, and go to state 54
+    FOR         shift, and go to state 55
+    WHILE       shift, and go to state 56
+    REPEAT      shift, and go to state 57
+    LBRACE      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 58
+
+    $default  reduce using rule 71 (instruction)
+
+    instruction_list        go to state 59
+    instruction             go to state 198
+    assignment_statement    go to state 61
+    input_statement         go to state 62
+    output_statement        go to state 63
+    procedure_call          go to state 64
+    conditional_statement   go to state 65
+    if_statement            go to state 66
+    if_else_statement       go to state 67
+    if_else_if_statement    go to state 68
+    repetition_statement    go to state 69
+    for_statement           go to state 70
+    while_statement         go to state 71
+    repeat_until_statement  go to state 72
+    variable_access         go to state 73
+    procedure_name          go to state 74
+
+
+State 159
+
+   61 instruction_list: LBRACE instruction instruction_tail RBRACE .
+
+    $default  reduce using rule 61 (instruction_list)
+
+
+State 160
+
+   92 if_else_statement: if_statement ELSE instruction .
+
+    $default  reduce using rule 92 (if_else_statement)
+
+
+State 161
+
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   93 if_else_if_statement: if_statement SEMICOLON ELSE . if_statement else_if_tail optional_else
+
+    IF  shift, and go to state 54
+
+    if_statement  go to state 199
+
+
+State 162
+
+   72 assignment_statement: variable_access ASSIGN expression .
+
+    $default  reduce using rule 72 (assignment_statement)
+
+
+State 163
+
+   80 procedure_call: procedure_name LPAREN actual_parameters_opt . RPAREN
+
+    RPAREN  shift, and go to state 200
+
+
+State 164
+
+   82 actual_parameters_opt: actual_parameters .
+
+    $default  reduce using rule 82 (actual_parameters_opt)
+
+
+State 165
+
+   83 actual_parameters: actual_parameter . actual_parameter_tail
+   84 actual_parameter_tail: %empty .
+   85                      | . actual_parameter_tail COMMA actual_parameter
+
+    $default  reduce using rule 84 (actual_parameter_tail)
+
+    actual_parameter_tail  go to state 201
+
+
+State 166
+
+   86 actual_parameter: expression .
+
+    $default  reduce using rule 86 (actual_parameter)
+
+
+State 167
+
+   21 list_type: LIST LBRACKET INTEGER_LITERAL . RBRACKET OF data_type
+
+    RBRACKET  shift, and go to state 202
+
+
+State 168
+
+   22 record_type: RECORD LBRACE field_list . RBRACE
+
+    RBRACE  shift, and go to state 203
+
+
+State 169
+
+   23 field_list: field_definition . field_definition_tail
+   24 field_definition_tail: %empty .
+   25                      | . field_definition_tail SEMICOLON field_definition
+
+    $default  reduce using rule 24 (field_definition_tail)
+
+    field_definition_tail  go to state 204
+
+
+State 170
+
+   26 field_definition: field_name . identifier_tail COLON data_type
+   27 identifier_tail: %empty .
+   28                | . identifier_tail COMMA IDENTIFIER
+
+    $default  reduce using rule 27 (identifier_tail)
+
+    identifier_tail  go to state 205
+
+
+State 171
+
+   44 procedure_header: PROCEDURE procedure_name LPAREN formal_parameters_opt RPAREN SEMICOLON .
+
+    $default  reduce using rule 44 (procedure_header)
+
+
+State 172
+
+   50 formal_parameter_tail: formal_parameter_tail SEMICOLON . formal_parameter
+   51 formal_parameter: . pass_mode_opt variable_group
+   52 pass_mode_opt: %empty .  [IDENTIFIER]
+   53              | . BY_VALUE
+   54              | . BY_REFERENCE
+
+    BY_VALUE      shift, and go to state 100
+    BY_REFERENCE  shift, and go to state 101
+
+    $default  reduce using rule 52 (pass_mode_opt)
+
+    formal_parameter  go to state 206
+    pass_mode_opt     go to state 105
+
+
+State 173
+
+   73 input_statement: READ LPAREN variable_access RPAREN .
+
+    $default  reduce using rule 73 (input_statement)
+
+
+State 174
+
+   74 output_statement: PRINT LPAREN print_list RPAREN .
+
+    $default  reduce using rule 74 (output_statement)
+
+
+State 175
+
+   75 print_list: print_item print_item_tail .  [RPAREN]
+   77 print_item_tail: print_item_tail . COMMA print_item
+
+    COMMA  shift, and go to state 207
+
+    $default  reduce using rule 75 (print_list)
+
+
+State 176
+
+   90 if_statement: IF LPAREN condition RPAREN . THEN instruction
+
+    THEN  shift, and go to state 208
+
+
+State 177
+
+  109 relational_operator: LT .
+
+    $default  reduce using rule 109 (relational_operator)
+
+
+State 178
+
+  110 relational_operator: GT .
+
+    $default  reduce using rule 110 (relational_operator)
+
+
+State 179
+
+  111 relational_operator: LE .
+
+    $default  reduce using rule 111 (relational_operator)
+
+
+State 180
+
+  112 relational_operator: GE .
+
+    $default  reduce using rule 112 (relational_operator)
+
+
+State 181
+
+  113 relational_operator: EQ .
+
+    $default  reduce using rule 113 (relational_operator)
+
+
+State 182
+
+  114 relational_operator: NE .
+
+    $default  reduce using rule 114 (relational_operator)
+
+
+State 183
+
+  108 expression: simple_expression relational_operator . simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    simple_expression  go to state 209
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 184
+
+  133 factor: . numeric
+  134       | . literal
+  135       | . boolean_value
+  136       | . identifier_factor
+  137       | . LPAREN expression RPAREN
+  138       | . NOT factor
+  138       | NOT . factor
+  139 identifier_factor: . IDENTIFIER
+  140                  | . IDENTIFIER selector
+  151 numeric: . INTEGER_LITERAL
+  152        | . REAL_LITERAL
+  153 literal: . STRING_LITERAL
+  154        | . CHAR_LITERAL
+  155 boolean_value: . TRUE
+  156              | . FALSE
+
+    TRUE             shift, and go to state 80
+    FALSE            shift, and go to state 81
+    NOT              shift, and go to state 184
+    LPAREN           shift, and go to state 185
+    IDENTIFIER       shift, and go to state 186
+    INTEGER_LITERAL  shift, and go to state 82
+    REAL_LITERAL     shift, and go to state 83
+    STRING_LITERAL   shift, and go to state 84
+    CHAR_LITERAL     shift, and go to state 85
+
+    factor             go to state 210
+    identifier_factor  go to state 189
+    numeric            go to state 190
+    literal            go to state 191
+    boolean_value      go to state 192
+
+
+State 185
+
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+  137 factor: LPAREN . expression RPAREN
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    expression         go to state 211
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 186
+
+  139 identifier_factor: IDENTIFIER .  [ELSE, TO, STEP, UNTIL, LT, GT, LE, GE, EQ, NE, PLUS, MINUS, OR, POWER, MUL, REAL_DIV, INT_DIV, MOD, AND, SEMICOLON, COMMA, RBRACE, RBRACKET, RPAREN]
+  140                  | IDENTIFIER . selector
+  143 selector: . indexed_selector
+  144         | . field_selector
+  145 indexed_selector: . LBRACKET expression RBRACKET
+  146 field_selector: . DOT field_name
+
+    DOT       shift, and go to state 112
+    LBRACKET  shift, and go to state 113
+
+    $default  reduce using rule 139 (identifier_factor)
+
+    selector          go to state 212
+    indexed_selector  go to state 115
+    field_selector    go to state 116
+
+
+State 187
+
+  115 simple_expression: sign_opt term . addition_tail
+  120 addition_tail: %empty .
+  121              | . addition_tail addition_operator term
+
+    $default  reduce using rule 120 (addition_tail)
+
+    addition_tail  go to state 213
+
+
+State 188
+
+  124 term: factor . multiplication_tail
+  125 multiplication_tail: %empty .
+  126                    | . multiplication_tail multiplication_operator factor
+
+    $default  reduce using rule 125 (multiplication_tail)
+
+    multiplication_tail  go to state 214
+
+
+State 189
+
+  136 factor: identifier_factor .
+
+    $default  reduce using rule 136 (factor)
+
+
+State 190
+
+  133 factor: numeric .
+
+    $default  reduce using rule 133 (factor)
+
+
+State 191
+
+  134 factor: literal .
+
+    $default  reduce using rule 134 (factor)
+
+
+State 192
+
+  135 factor: boolean_value .
+
+    $default  reduce using rule 135 (factor)
+
+
+State 193
+
+   61 instruction_list: . LBRACE instruction instruction_tail RBRACE
+   64 instruction: . assignment_statement
+   65            | . input_statement
+   66            | . output_statement
+   67            | . procedure_call
+   68            | . conditional_statement
+   69            | . repetition_statement
+   70            | . instruction_list
+   71            | %empty .  [ELSE, UNTIL, SEMICOLON, RBRACE]
+   72 assignment_statement: . variable_access ASSIGN expression
+   73 input_statement: . READ LPAREN variable_access RPAREN
+   74 output_statement: . PRINT LPAREN print_list RPAREN
+   80 procedure_call: . procedure_name LPAREN actual_parameters_opt RPAREN
+   87 conditional_statement: . if_statement
+   88                      | . if_else_statement
+   89                      | . if_else_if_statement
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   92 if_else_statement: . if_statement ELSE instruction
+   93 if_else_if_statement: . if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+   98 repetition_statement: . for_statement
+   99                     | . while_statement
+  100                     | . repeat_until_statement
+  101 for_statement: . FOR LPAREN repetition_range RPAREN instruction
+  101              | FOR LPAREN repetition_range RPAREN . instruction
+  105 while_statement: . WHILE LPAREN condition RPAREN DO instruction
+  106 repeat_until_statement: . REPEAT instruction UNTIL LPAREN condition RPAREN
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  162 procedure_name: . IDENTIFIER
+
+    READ        shift, and go to state 52
+    PRINT       shift, and go to state 53
+    IF          shift, and go to state 54
+    FOR         shift, and go to state 55
+    WHILE       shift, and go to state 56
+    REPEAT      shift, and go to state 57
+    LBRACE      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 58
+
+    $default  reduce using rule 71 (instruction)
+
+    instruction_list        go to state 59
+    instruction             go to state 215
+    assignment_statement    go to state 61
+    input_statement         go to state 62
+    output_statement        go to state 63
+    procedure_call          go to state 64
+    conditional_statement   go to state 65
+    if_statement            go to state 66
+    if_else_statement       go to state 67
+    if_else_if_statement    go to state 68
+    repetition_statement    go to state 69
+    for_statement           go to state 70
+    while_statement         go to state 71
+    repeat_until_statement  go to state 72
+    variable_access         go to state 73
+    procedure_name          go to state 74
+
+
+State 194
+
+  102 repetition_range: variable_name ASSIGN . expression TO expression step_opt
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    expression         go to state 216
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 195
+
+  105 while_statement: WHILE LPAREN condition RPAREN . DO instruction
+
+    DO  shift, and go to state 217
+
+
+State 196
+
+   91 condition: . expression
+  106 repeat_until_statement: REPEAT instruction UNTIL LPAREN . condition RPAREN
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    condition          go to state 218
+    expression         go to state 147
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 197
+
+  145 indexed_selector: LBRACKET expression RBRACKET .
+
+    $default  reduce using rule 145 (indexed_selector)
+
+
+State 198
+
+   63 instruction_tail: instruction_tail SEMICOLON instruction .
+
+    $default  reduce using rule 63 (instruction_tail)
+
+
+State 199
+
+   93 if_else_if_statement: if_statement SEMICOLON ELSE if_statement . else_if_tail optional_else
+   94 else_if_tail: %empty .
+   95             | . else_if_tail SEMICOLON ELSE if_statement
+
+    $default  reduce using rule 94 (else_if_tail)
+
+    else_if_tail  go to state 219
+
+
+State 200
+
+   80 procedure_call: procedure_name LPAREN actual_parameters_opt RPAREN .
+
+    $default  reduce using rule 80 (procedure_call)
+
+
+State 201
+
+   83 actual_parameters: actual_parameter actual_parameter_tail .  [RPAREN]
+   85 actual_parameter_tail: actual_parameter_tail . COMMA actual_parameter
+
+    COMMA  shift, and go to state 220
+
+    $default  reduce using rule 83 (actual_parameters)
+
+
+State 202
+
+   21 list_type: LIST LBRACKET INTEGER_LITERAL RBRACKET . OF data_type
+
+    OF  shift, and go to state 221
+
+
+State 203
+
+   22 record_type: RECORD LBRACE field_list RBRACE .
+
+    $default  reduce using rule 22 (record_type)
+
+
+State 204
+
+   23 field_list: field_definition field_definition_tail .  [RBRACE]
+   25 field_definition_tail: field_definition_tail . SEMICOLON field_definition
+
+    SEMICOLON  shift, and go to state 222
+
+    $default  reduce using rule 23 (field_list)
+
+
+State 205
+
+   26 field_definition: field_name identifier_tail . COLON data_type
+   28 identifier_tail: identifier_tail . COMMA IDENTIFIER
+
+    COLON  shift, and go to state 223
+    COMMA  shift, and go to state 224
+
+
+State 206
+
+   50 formal_parameter_tail: formal_parameter_tail SEMICOLON formal_parameter .
+
+    $default  reduce using rule 50 (formal_parameter_tail)
+
+
+State 207
+
+   77 print_item_tail: print_item_tail COMMA . print_item
+   78 print_item: . variable_access
+   79           | . literal
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  153 literal: . STRING_LITERAL
+  154        | . CHAR_LITERAL
+
+    IDENTIFIER      shift, and go to state 138
+    STRING_LITERAL  shift, and go to state 84
+    CHAR_LITERAL    shift, and go to state 85
+
+    print_item       go to state 225
+    variable_access  go to state 142
+    literal          go to state 143
+
+
+State 208
+
+   61 instruction_list: . LBRACE instruction instruction_tail RBRACE
+   64 instruction: . assignment_statement
+   65            | . input_statement
+   66            | . output_statement
+   67            | . procedure_call
+   68            | . conditional_statement
+   69            | . repetition_statement
+   70            | . instruction_list
+   71            | %empty .  [ELSE, UNTIL, SEMICOLON, RBRACE]
+   72 assignment_statement: . variable_access ASSIGN expression
+   73 input_statement: . READ LPAREN variable_access RPAREN
+   74 output_statement: . PRINT LPAREN print_list RPAREN
+   80 procedure_call: . procedure_name LPAREN actual_parameters_opt RPAREN
+   87 conditional_statement: . if_statement
+   88                      | . if_else_statement
+   89                      | . if_else_if_statement
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   90             | IF LPAREN condition RPAREN THEN . instruction
+   92 if_else_statement: . if_statement ELSE instruction
+   93 if_else_if_statement: . if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+   98 repetition_statement: . for_statement
+   99                     | . while_statement
+  100                     | . repeat_until_statement
+  101 for_statement: . FOR LPAREN repetition_range RPAREN instruction
+  105 while_statement: . WHILE LPAREN condition RPAREN DO instruction
+  106 repeat_until_statement: . REPEAT instruction UNTIL LPAREN condition RPAREN
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  162 procedure_name: . IDENTIFIER
+
+    READ        shift, and go to state 52
+    PRINT       shift, and go to state 53
+    IF          shift, and go to state 54
+    FOR         shift, and go to state 55
+    WHILE       shift, and go to state 56
+    REPEAT      shift, and go to state 57
+    LBRACE      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 58
+
+    $default  reduce using rule 71 (instruction)
+
+    instruction_list        go to state 59
+    instruction             go to state 226
+    assignment_statement    go to state 61
+    input_statement         go to state 62
+    output_statement        go to state 63
+    procedure_call          go to state 64
+    conditional_statement   go to state 65
+    if_statement            go to state 66
+    if_else_statement       go to state 67
+    if_else_if_statement    go to state 68
+    repetition_statement    go to state 69
+    for_statement           go to state 70
+    while_statement         go to state 71
+    repeat_until_statement  go to state 72
+    variable_access         go to state 73
+    procedure_name          go to state 74
+
+
+State 209
+
+  108 expression: simple_expression relational_operator simple_expression .
+
+    $default  reduce using rule 108 (expression)
+
+
+State 210
+
+  138 factor: NOT factor .
+
+    $default  reduce using rule 138 (factor)
+
+
+State 211
+
+  137 factor: LPAREN expression . RPAREN
+
+    RPAREN  shift, and go to state 227
+
+
+State 212
+
+  140 identifier_factor: IDENTIFIER selector .
+
+    $default  reduce using rule 140 (identifier_factor)
+
+
+State 213
+
+  115 simple_expression: sign_opt term addition_tail .  [ELSE, TO, STEP, UNTIL, LT, GT, LE, GE, EQ, NE, SEMICOLON, COMMA, RBRACE, RBRACKET, RPAREN]
+  118 sign_operator: . PLUS
+  119              | . MINUS
+  121 addition_tail: addition_tail . addition_operator term
+  122 addition_operator: . sign_operator
+  123                  | . OR
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+    OR     shift, and go to state 228
+
+    $default  reduce using rule 115 (simple_expression)
+
+    sign_operator      go to state 229
+    addition_operator  go to state 230
+
+
+State 214
+
+  124 term: factor multiplication_tail .  [ELSE, TO, STEP, UNTIL, LT, GT, LE, GE, EQ, NE, PLUS, MINUS, OR, SEMICOLON, COMMA, RBRACE, RBRACKET, RPAREN]
+  126 multiplication_tail: multiplication_tail . multiplication_operator factor
+  127 multiplication_operator: . POWER
+  128                        | . MUL
+  129                        | . REAL_DIV
+  130                        | . INT_DIV
+  131                        | . MOD
+  132                        | . AND
+
+    POWER     shift, and go to state 231
+    MUL       shift, and go to state 232
+    REAL_DIV  shift, and go to state 233
+    INT_DIV   shift, and go to state 234
+    MOD       shift, and go to state 235
+    AND       shift, and go to state 236
+
+    $default  reduce using rule 124 (term)
+
+    multiplication_operator  go to state 237
+
+
+State 215
+
+  101 for_statement: FOR LPAREN repetition_range RPAREN instruction .
+
+    $default  reduce using rule 101 (for_statement)
+
+
+State 216
+
+  102 repetition_range: variable_name ASSIGN expression . TO expression step_opt
+
+    TO  shift, and go to state 238
+
+
+State 217
+
+   61 instruction_list: . LBRACE instruction instruction_tail RBRACE
+   64 instruction: . assignment_statement
+   65            | . input_statement
+   66            | . output_statement
+   67            | . procedure_call
+   68            | . conditional_statement
+   69            | . repetition_statement
+   70            | . instruction_list
+   71            | %empty .  [ELSE, UNTIL, SEMICOLON, RBRACE]
+   72 assignment_statement: . variable_access ASSIGN expression
+   73 input_statement: . READ LPAREN variable_access RPAREN
+   74 output_statement: . PRINT LPAREN print_list RPAREN
+   80 procedure_call: . procedure_name LPAREN actual_parameters_opt RPAREN
+   87 conditional_statement: . if_statement
+   88                      | . if_else_statement
+   89                      | . if_else_if_statement
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   92 if_else_statement: . if_statement ELSE instruction
+   93 if_else_if_statement: . if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+   98 repetition_statement: . for_statement
+   99                     | . while_statement
+  100                     | . repeat_until_statement
+  101 for_statement: . FOR LPAREN repetition_range RPAREN instruction
+  105 while_statement: . WHILE LPAREN condition RPAREN DO instruction
+  105                | WHILE LPAREN condition RPAREN DO . instruction
+  106 repeat_until_statement: . REPEAT instruction UNTIL LPAREN condition RPAREN
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  162 procedure_name: . IDENTIFIER
+
+    READ        shift, and go to state 52
+    PRINT       shift, and go to state 53
+    IF          shift, and go to state 54
+    FOR         shift, and go to state 55
+    WHILE       shift, and go to state 56
+    REPEAT      shift, and go to state 57
+    LBRACE      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 58
+
+    $default  reduce using rule 71 (instruction)
+
+    instruction_list        go to state 59
+    instruction             go to state 239
+    assignment_statement    go to state 61
+    input_statement         go to state 62
+    output_statement        go to state 63
+    procedure_call          go to state 64
+    conditional_statement   go to state 65
+    if_statement            go to state 66
+    if_else_statement       go to state 67
+    if_else_if_statement    go to state 68
+    repetition_statement    go to state 69
+    for_statement           go to state 70
+    while_statement         go to state 71
+    repeat_until_statement  go to state 72
+    variable_access         go to state 73
+    procedure_name          go to state 74
+
+
+State 218
+
+  106 repeat_until_statement: REPEAT instruction UNTIL LPAREN condition . RPAREN
+
+    RPAREN  shift, and go to state 240
+
+
+State 219
+
+   93 if_else_if_statement: if_statement SEMICOLON ELSE if_statement else_if_tail . optional_else
+   95 else_if_tail: else_if_tail . SEMICOLON ELSE if_statement
+   96 optional_else: %empty .  [ELSE, UNTIL, SEMICOLON, RBRACE]
+   97              | . ELSE instruction
+
+    ELSE       shift, and go to state 241
+    SEMICOLON  shift, and go to state 242
+
+    ELSE       [reduce using rule 96 (optional_else)]
+    SEMICOLON  [reduce using rule 96 (optional_else)]
+    $default   reduce using rule 96 (optional_else)
+
+    optional_else  go to state 243
+
+    shift/reduce conflict on token SEMICOLON:
+       96 optional_else: %empty .
+       95 else_if_tail: else_if_tail . SEMICOLON ELSE if_statement
+      First example: PROGRAM program_name SEMICOLON declaration_part_opt LBRACE if_statement SEMICOLON ELSE if_statement else_if_tail . SEMICOLON ELSE if_statement optional_else instruction_tail RBRACE DOT $end
+      Shift derivation
+        $accept
+        `-> 0: program                                                                                                                                                                                                                                $end
+               `-> 1: PROGRAM program_name SEMICOLON program_block                                                                                                                                                                                DOT
+                                                     `-> 2: declaration_part_opt instruction_list
+                                                                                 `-> 61: LBRACE instruction                                                                                                               instruction_tail RBRACE
+                                                                                                `-> 68: if_else_if_statement
+                                                                                                        `-> 93: if_statement SEMICOLON ELSE if_statement else_if_tail                                       optional_else
+                                                                                                                                                         `-> 95: else_if_tail . SEMICOLON ELSE if_statement
+      Second example: PROGRAM program_name SEMICOLON declaration_part_opt LBRACE if_statement SEMICOLON ELSE if_statement else_if_tail . instruction_tail SEMICOLON SEMICOLON instruction RBRACE DOT $end
+      Reduce derivation
+        $accept
+        `-> 0: program                                                                                                                                                                                                                                             $end
+               `-> 1: PROGRAM program_name SEMICOLON program_block                                                                                                                                                                                             DOT
+                                                     `-> 2: declaration_part_opt instruction_list
+                                                                                 `-> 61: LBRACE instruction                                                                                    instruction_tail                                         RBRACE
+                                                                                                `-> 68: conditional_statement                                                                  `-> 63: instruction_tail SEMICOLON SEMICOLON instruction
+                                                                                                        `-> 89: if_else_if_statement
+                                                                                                                `-> 93: if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+                                                                                                                                                                              `-> 96: %empty .
+
+    shift/reduce conflict on token ELSE:
+       96 optional_else: %empty .
+       97 optional_else: . ELSE instruction
+      Example: IF LPAREN condition RPAREN THEN if_statement SEMICOLON ELSE if_statement else_if_tail . ELSE
+      Shift derivation
+        conditional_statement
+        `-> 87: if_statement
+                `-> 90: IF LPAREN condition RPAREN THEN instruction
+                                                        `-> 68: conditional_statement
+                                                                `-> 89: if_else_if_statement
+                                                                        `-> 93: if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+                                                                                                                                      `-> 97: . ELSE instruction
+                                                                                                                                                     `-> 97: %empty
+      Reduce derivation
+        conditional_statement
+        `-> 88: if_else_statement
+                `-> 92: if_statement                                                                                                                           ELSE instruction
+                        `-> 90: IF LPAREN condition RPAREN THEN instruction                                                                                         `-> 92: %empty
+                                                                `-> 68: conditional_statement
+                                                                        `-> 89: if_else_if_statement
+                                                                                `-> 93: if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+                                                                                                                                              `-> 96: %empty .
+
+
+
+State 220
+
+   85 actual_parameter_tail: actual_parameter_tail COMMA . actual_parameter
+   86 actual_parameter: . expression
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    actual_parameter   go to state 244
+    expression         go to state 166
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 221
+
+   21 list_type: LIST LBRACKET INTEGER_LITERAL RBRACKET OF . data_type
+   55 data_type: . INT_TYPE
+   56          | . REAL_TYPE
+   57          | . BOOL_TYPE
+   58          | . CHAR_TYPE
+   59          | . STRING_TYPE
+   60          | . type_name
+  159 type_name: . IDENTIFIER
+
+    INT_TYPE     shift, and go to state 127
+    REAL_TYPE    shift, and go to state 128
+    BOOL_TYPE    shift, and go to state 129
+    CHAR_TYPE    shift, and go to state 130
+    STRING_TYPE  shift, and go to state 131
+    IDENTIFIER   shift, and go to state 23
+
+    data_type  go to state 245
+    type_name  go to state 133
+
+
+State 222
+
+   25 field_definition_tail: field_definition_tail SEMICOLON . field_definition
+   26 field_definition: . field_name identifier_tail COLON data_type
+  160 field_name: . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 155
+
+    field_definition  go to state 246
+    field_name        go to state 170
+
+
+State 223
+
+   26 field_definition: field_name identifier_tail COLON . data_type
+   55 data_type: . INT_TYPE
+   56          | . REAL_TYPE
+   57          | . BOOL_TYPE
+   58          | . CHAR_TYPE
+   59          | . STRING_TYPE
+   60          | . type_name
+  159 type_name: . IDENTIFIER
+
+    INT_TYPE     shift, and go to state 127
+    REAL_TYPE    shift, and go to state 128
+    BOOL_TYPE    shift, and go to state 129
+    CHAR_TYPE    shift, and go to state 130
+    STRING_TYPE  shift, and go to state 131
+    IDENTIFIER   shift, and go to state 23
+
+    data_type  go to state 247
+    type_name  go to state 133
+
+
+State 224
+
+   28 identifier_tail: identifier_tail COMMA . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 248
+
+
+State 225
+
+   77 print_item_tail: print_item_tail COMMA print_item .
+
+    $default  reduce using rule 77 (print_item_tail)
+
+
+State 226
+
+   90 if_statement: IF LPAREN condition RPAREN THEN instruction .
+
+    $default  reduce using rule 90 (if_statement)
+
+
+State 227
+
+  137 factor: LPAREN expression RPAREN .
+
+    $default  reduce using rule 137 (factor)
+
+
+State 228
+
+  123 addition_operator: OR .
+
+    $default  reduce using rule 123 (addition_operator)
+
+
+State 229
+
+  122 addition_operator: sign_operator .
+
+    $default  reduce using rule 122 (addition_operator)
+
+
+State 230
+
+  121 addition_tail: addition_tail addition_operator . term
+  124 term: . factor multiplication_tail
+  133 factor: . numeric
+  134       | . literal
+  135       | . boolean_value
+  136       | . identifier_factor
+  137       | . LPAREN expression RPAREN
+  138       | . NOT factor
+  139 identifier_factor: . IDENTIFIER
+  140                  | . IDENTIFIER selector
+  151 numeric: . INTEGER_LITERAL
+  152        | . REAL_LITERAL
+  153 literal: . STRING_LITERAL
+  154        | . CHAR_LITERAL
+  155 boolean_value: . TRUE
+  156              | . FALSE
+
+    TRUE             shift, and go to state 80
+    FALSE            shift, and go to state 81
+    NOT              shift, and go to state 184
+    LPAREN           shift, and go to state 185
+    IDENTIFIER       shift, and go to state 186
+    INTEGER_LITERAL  shift, and go to state 82
+    REAL_LITERAL     shift, and go to state 83
+    STRING_LITERAL   shift, and go to state 84
+    CHAR_LITERAL     shift, and go to state 85
+
+    term               go to state 249
+    factor             go to state 188
+    identifier_factor  go to state 189
+    numeric            go to state 190
+    literal            go to state 191
+    boolean_value      go to state 192
+
+
+State 231
+
+  127 multiplication_operator: POWER .
+
+    $default  reduce using rule 127 (multiplication_operator)
+
+
+State 232
+
+  128 multiplication_operator: MUL .
+
+    $default  reduce using rule 128 (multiplication_operator)
+
+
+State 233
+
+  129 multiplication_operator: REAL_DIV .
+
+    $default  reduce using rule 129 (multiplication_operator)
+
+
+State 234
+
+  130 multiplication_operator: INT_DIV .
+
+    $default  reduce using rule 130 (multiplication_operator)
+
+
+State 235
+
+  131 multiplication_operator: MOD .
+
+    $default  reduce using rule 131 (multiplication_operator)
+
+
+State 236
+
+  132 multiplication_operator: AND .
+
+    $default  reduce using rule 132 (multiplication_operator)
+
+
+State 237
+
+  126 multiplication_tail: multiplication_tail multiplication_operator . factor
+  133 factor: . numeric
+  134       | . literal
+  135       | . boolean_value
+  136       | . identifier_factor
+  137       | . LPAREN expression RPAREN
+  138       | . NOT factor
+  139 identifier_factor: . IDENTIFIER
+  140                  | . IDENTIFIER selector
+  151 numeric: . INTEGER_LITERAL
+  152        | . REAL_LITERAL
+  153 literal: . STRING_LITERAL
+  154        | . CHAR_LITERAL
+  155 boolean_value: . TRUE
+  156              | . FALSE
+
+    TRUE             shift, and go to state 80
+    FALSE            shift, and go to state 81
+    NOT              shift, and go to state 184
+    LPAREN           shift, and go to state 185
+    IDENTIFIER       shift, and go to state 186
+    INTEGER_LITERAL  shift, and go to state 82
+    REAL_LITERAL     shift, and go to state 83
+    STRING_LITERAL   shift, and go to state 84
+    CHAR_LITERAL     shift, and go to state 85
+
+    factor             go to state 250
+    identifier_factor  go to state 189
+    numeric            go to state 190
+    literal            go to state 191
+    boolean_value      go to state 192
+
+
+State 238
+
+  102 repetition_range: variable_name ASSIGN expression TO . expression step_opt
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    expression         go to state 251
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 239
+
+  105 while_statement: WHILE LPAREN condition RPAREN DO instruction .
+
+    $default  reduce using rule 105 (while_statement)
+
+
+State 240
+
+  106 repeat_until_statement: REPEAT instruction UNTIL LPAREN condition RPAREN .
+
+    $default  reduce using rule 106 (repeat_until_statement)
+
+
+State 241
+
+   61 instruction_list: . LBRACE instruction instruction_tail RBRACE
+   64 instruction: . assignment_statement
+   65            | . input_statement
+   66            | . output_statement
+   67            | . procedure_call
+   68            | . conditional_statement
+   69            | . repetition_statement
+   70            | . instruction_list
+   71            | %empty .  [ELSE, UNTIL, SEMICOLON, RBRACE]
+   72 assignment_statement: . variable_access ASSIGN expression
+   73 input_statement: . READ LPAREN variable_access RPAREN
+   74 output_statement: . PRINT LPAREN print_list RPAREN
+   80 procedure_call: . procedure_name LPAREN actual_parameters_opt RPAREN
+   87 conditional_statement: . if_statement
+   88                      | . if_else_statement
+   89                      | . if_else_if_statement
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   92 if_else_statement: . if_statement ELSE instruction
+   93 if_else_if_statement: . if_statement SEMICOLON ELSE if_statement else_if_tail optional_else
+   97 optional_else: ELSE . instruction
+   98 repetition_statement: . for_statement
+   99                     | . while_statement
+  100                     | . repeat_until_statement
+  101 for_statement: . FOR LPAREN repetition_range RPAREN instruction
+  105 while_statement: . WHILE LPAREN condition RPAREN DO instruction
+  106 repeat_until_statement: . REPEAT instruction UNTIL LPAREN condition RPAREN
+  141 variable_access: . IDENTIFIER
+  142                | . IDENTIFIER selector
+  162 procedure_name: . IDENTIFIER
+
+    READ        shift, and go to state 52
+    PRINT       shift, and go to state 53
+    IF          shift, and go to state 54
+    FOR         shift, and go to state 55
+    WHILE       shift, and go to state 56
+    REPEAT      shift, and go to state 57
+    LBRACE      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 58
+
+    $default  reduce using rule 71 (instruction)
+
+    instruction_list        go to state 59
+    instruction             go to state 252
+    assignment_statement    go to state 61
+    input_statement         go to state 62
+    output_statement        go to state 63
+    procedure_call          go to state 64
+    conditional_statement   go to state 65
+    if_statement            go to state 66
+    if_else_statement       go to state 67
+    if_else_if_statement    go to state 68
+    repetition_statement    go to state 69
+    for_statement           go to state 70
+    while_statement         go to state 71
+    repeat_until_statement  go to state 72
+    variable_access         go to state 73
+    procedure_name          go to state 74
+
+
+State 242
+
+   95 else_if_tail: else_if_tail SEMICOLON . ELSE if_statement
+
+    ELSE  shift, and go to state 253
+
+
+State 243
+
+   93 if_else_if_statement: if_statement SEMICOLON ELSE if_statement else_if_tail optional_else .
+
+    $default  reduce using rule 93 (if_else_if_statement)
+
+
+State 244
+
+   85 actual_parameter_tail: actual_parameter_tail COMMA actual_parameter .
+
+    $default  reduce using rule 85 (actual_parameter_tail)
+
+
+State 245
+
+   21 list_type: LIST LBRACKET INTEGER_LITERAL RBRACKET OF data_type .
+
+    $default  reduce using rule 21 (list_type)
+
+
+State 246
+
+   25 field_definition_tail: field_definition_tail SEMICOLON field_definition .
+
+    $default  reduce using rule 25 (field_definition_tail)
+
+
+State 247
+
+   26 field_definition: field_name identifier_tail COLON data_type .
+
+    $default  reduce using rule 26 (field_definition)
+
+
+State 248
+
+   28 identifier_tail: identifier_tail COMMA IDENTIFIER .
+
+    $default  reduce using rule 28 (identifier_tail)
+
+
+State 249
+
+  121 addition_tail: addition_tail addition_operator term .
+
+    $default  reduce using rule 121 (addition_tail)
+
+
+State 250
+
+  126 multiplication_tail: multiplication_tail multiplication_operator factor .
+
+    $default  reduce using rule 126 (multiplication_tail)
+
+
+State 251
+
+  102 repetition_range: variable_name ASSIGN expression TO expression . step_opt
+  103 step_opt: %empty .  [RPAREN]
+  104         | . STEP expression
+
+    STEP  shift, and go to state 254
+
+    $default  reduce using rule 103 (step_opt)
+
+    step_opt  go to state 255
+
+
+State 252
+
+   97 optional_else: ELSE instruction .
+
+    $default  reduce using rule 97 (optional_else)
+
+
+State 253
+
+   90 if_statement: . IF LPAREN condition RPAREN THEN instruction
+   95 else_if_tail: else_if_tail SEMICOLON ELSE . if_statement
+
+    IF  shift, and go to state 54
+
+    if_statement  go to state 256
+
+
+State 254
+
+  104 step_opt: STEP . expression
+  107 expression: . simple_expression
+  108           | . simple_expression relational_operator simple_expression
+  115 simple_expression: . sign_opt term addition_tail
+  116 sign_opt: %empty .  [TRUE, FALSE, NOT, LPAREN, IDENTIFIER, INTEGER_LITERAL, REAL_LITERAL, STRING_LITERAL, CHAR_LITERAL]
+  117         | . sign_operator
+  118 sign_operator: . PLUS
+  119              | . MINUS
+
+    PLUS   shift, and go to state 144
+    MINUS  shift, and go to state 145
+
+    $default  reduce using rule 116 (sign_opt)
+
+    expression         go to state 257
+    simple_expression  go to state 148
+    sign_opt           go to state 149
+    sign_operator      go to state 150
+
+
+State 255
+
+  102 repetition_range: variable_name ASSIGN expression TO expression step_opt .
+
+    $default  reduce using rule 102 (repetition_range)
+
+
+State 256
+
+   95 else_if_tail: else_if_tail SEMICOLON ELSE if_statement .
+
+    $default  reduce using rule 95 (else_if_tail)
+
+
+State 257
+
+  104 step_opt: STEP expression .
+
+    $default  reduce using rule 104 (step_opt)
