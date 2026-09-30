@@ -1,0 +1,10 @@
+﻿  pch.cpp
+  parser.tab.c
+D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\Bison\parser.tab.c(1698,36): warning C4244: 'return': conversion from '__int64' to 'long', possible loss of data
+D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\Bison\parser.tab.c(1950,41): warning C4244: 'initializing': conversion from '__int64' to 'long', possible loss of data
+  compiler_api.cpp
+  dllmain.cpp
+  Generating Code...
+  lex.yy.c
+     Creating library C:\Users\Ro.Has\Desktop\com\ArabicCompiler.Native\x64\Debug\ArabicCompiler.Native.lib and object C:\Users\Ro.Has\Desktop\com\ArabicCompiler.Native\x64\Debug\ArabicCompiler.Native.exp
+  ArabicCompiler.Native.vcxproj -> C:\Users\Ro.Has\Desktop\com\ArabicCompiler.Native\x64\Debug\ArabicCompiler.Native.dll

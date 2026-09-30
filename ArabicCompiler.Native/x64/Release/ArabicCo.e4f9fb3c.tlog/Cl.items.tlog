@@ -1,0 +1,5 @@
+D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\Bison\parser.tab.c;D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\x64\Release\parser.tab.obj
+D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\compiler_api.cpp;D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\x64\Release\compiler_api.obj
+D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\dllmain.cpp;D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\x64\Release\dllmain.obj
+D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\Flex\lex.yy.c;D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\x64\Release\lex.yy.obj
+D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\pch.cpp;D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\x64\Release\pch.obj

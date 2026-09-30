@@ -1,0 +1,2 @@
+C:\Users\Ro.Has\Desktop\compler\ArabicCompiler.Native\x64\Debug\ArabicCompiler.Native.dll
+C:\Users\Ro.Has\Desktop\com\ArabicCompiler.Native\x64\Debug\ArabicCompiler.Native.dll

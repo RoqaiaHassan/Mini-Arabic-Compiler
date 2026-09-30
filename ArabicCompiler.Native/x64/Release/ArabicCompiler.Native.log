@@ -1,0 +1,13 @@
+﻿  pch.cpp
+  parser.tab.c
+D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\Bison\parser.tab.c(1698,36): warning C4244: 'return': conversion from '__int64' to 'long', possible loss of data
+D:\ArabicCompiler\ArabicCompiler\ArabicCompiler.Native\Bison\parser.tab.c(1949,41): warning C4244: 'initializing': conversion from '__int64' to 'long', possible loss of data
+  compiler_api.cpp
+  dllmain.cpp
+  lex.yy.c
+     Creating library D:\ArabicCompiler\ArabicCompiler\x64\Release\ArabicCompiler.Native.lib and object D:\ArabicCompiler\ArabicCompiler\x64\Release\ArabicCompiler.Native.exp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 43 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  ArabicCompiler.Native.vcxproj -> D:\ArabicCompiler\ArabicCompiler\x64\Release\ArabicCompiler.Native.dll
